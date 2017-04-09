@@ -1,23 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>pl.letsplayagame</groupId>
-  <artifactId>letsplay</artifactId>
+  <groupId>pl.letsplay</groupId>
+  <artifactId>LetsPlay</artifactId>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>letsplay</name>
+  <name>LetsPlay Maven Webapp</name>
   <url>http://maven.apache.org</url>
-
-  <build>
-  	<defaultGoal>validate compile test integration-test verify install deploy</defaultGoal>
-  </build>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -25,9 +14,13 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<version>3.1.0</version>
+    </dependency>
   </dependencies>
-  <ciManagement>
-  	<url>https://io-ci.cs.put.poznan.pl/job/Lets%20play/</url>
-  	<system>Jenkins</system>
-  </ciManagement>
+  <build>
+    <finalName>LetsPlay</finalName>
+  </build>
 </project>
