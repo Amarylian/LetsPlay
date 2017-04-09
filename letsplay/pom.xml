@@ -10,6 +10,10 @@
   <name>letsplay</name>
   <url>http://maven.apache.org</url>
 
+  <build>
+  	<defaultGoal>validate compile test integration-test verify install deploy</defaultGoal>
+  </build>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
