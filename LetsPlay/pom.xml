@@ -24,7 +24,7 @@
   
   <build>
     <finalName>LetsPlay</finalName>
-    <defaultGoal>validate compile test integration-test verify install deploy</defaultGoal>
+    <defaultGoal>validate compile test integration-test verify install</defaultGoal>
     <plugins>
        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
