@@ -26,4 +26,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <ciManagement>
+  	<url>https://io-ci.cs.put.poznan.pl/job/Lets%20play/</url>
+  	<system>Jenkins</system>
+  </ciManagement>
 </project>
