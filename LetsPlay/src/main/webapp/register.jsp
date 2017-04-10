@@ -14,6 +14,10 @@
 <form action = "register" name="data" method="post">
 	<p>Login</p>
 	<input type="text" name="login" />
+	<p>Imię</p>
+	<input type="text" name="name" />
+	<p>Nazwisko</p>
+	<input type="text" name="surname" />
 	<p>E-mail</p>
 	<input type="text" name="email" />
 	<p>Hasło</p>
@@ -21,7 +25,24 @@
 	<p>Powtórz hasło</p>
 	<input type="text" name="passwd2" />
 	<p />
+	 <%
+		Object passwd = request.getAttribute("password");
+		String error = "";
+		if(passwd != null) {
+			if(Boolean.valueOf(passwd.toString()) == false) {
+				error = "Błędne powtórzenie hasła";
+			}
+		}
+ 			Object success = request.getAttribute("success");
+ 			if(success != null) {
+ 				if(Boolean.valueOf(success.toString()) == false) {
+ 					error = "Rejestracja nie powiodła się";
+ 				}
+ 			}
+ 			
+ 	%>
 	<input type="submit" name="register" value="Zarejestruj">
+	<div class="errorMessage"><%=error%></div>
 </form>
 </div></div>
 </body>
