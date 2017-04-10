@@ -20,14 +20,28 @@
 	{
 		background-color: purple;
 	}
-	
+
 	.form{
-	margin: auto;
+		margin: auto;
 		text-align: center;
 		border: 2px solid purple;
 		background-color: yellow;
+		
 		width: 60%;
 	}
+	
+		.links
+	{
+		text-decoration:none;
+		margin-top:30px;
+		margin-bottom:30px;	
+		justify-content:center;
+		align-items:center;
+		text-align: center;
+		font-size:30px;
+		
+	}
+	
 	.form input{
 		width=70%
 	}

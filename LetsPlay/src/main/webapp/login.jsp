@@ -27,7 +27,7 @@
  			Object success = request.getAttribute("success");
  			String error = "";
  			if(success != null) {
- 				if((boolean)success == false) {
+ 				if(Boolean.valueOf(success.toString()) == false) {
  					error = "Nie udało się zalogować";
  				}
  			}
