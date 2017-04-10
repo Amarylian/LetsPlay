@@ -33,9 +33,9 @@ public class DBUtils {
 		  return null;
 	  }
 	  
-	  public static User createMeeting(Connection conn) throws SQLException {
-		  //?
+	  public static int createMeeting(Connection conn,	String priv, String city, String date, String time, String address, String address2, String number, String attentions) throws SQLException {
+		  //w sumie nie wiem co ma zwracać - rejestracja spotkania w bazie
 		  
-		  return null;
+		  return 0;
 	  }
 }
