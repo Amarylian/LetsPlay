@@ -30,7 +30,7 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
-  	<url-pattern>/RegisterServlet</url-pattern>
+  	<url-pattern>/register</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>PasswordReminderServlet</servlet-name>
