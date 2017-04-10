@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login" method="get">
+	
+	<form action="login" method="get" class="form">
  		<table id="login">
  		 	<%
  			Object login = request.getAttribute("login");
@@ -37,6 +38,9 @@
 
  			<tr>
  				<td><input type="submit" value="Zaloguj się" onclick=""></td>
+ 			</tr>
+ 			<tr>
+ 				<td><a href="/LetsPlay/passwordReminder.jsp">Przypomnij hasło</a></td>
  			</tr>
  		</table>
 	</form>

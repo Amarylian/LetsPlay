@@ -37,13 +37,13 @@ public class LoginServlet extends HttpServlet {
 	    //validate
 	    if(false) {
 	    	RequestDispatcher rd=request.getRequestDispatcher("home.jsp");  
-	    	request.setAttribute("success", false);
+	    	// TODO save token in seesion
 	    	rd.include(request,response); 
 	    } else {
 	    	RequestDispatcher rd=request.getRequestDispatcher("login.jsp");  
 	    	request.setAttribute("success", false);
 	    	request.setAttribute("login", login);
-	    	rd.include(request,response); 
+	    	rd.include(request,response);
 	    }
         //out.close();
 	}
