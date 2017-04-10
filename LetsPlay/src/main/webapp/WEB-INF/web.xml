@@ -23,6 +23,18 @@
   	<description></description>
   	<servlet-class>pl.letsplay.jsp.servlet.PasswordReminderServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>createMeeting</servlet-name>
+  	<display-name>createMeeting</display-name>
+  	<description></description>
+  	<jsp-file>/createMeeting.jsp</jsp-file>
+  </servlet>
+  <servlet>
+  	<servlet-name>CreateMeetingServlet</servlet-name>
+  	<display-name>CreateMeetingServlet</display-name>
+  	<description></description>
+  	<servlet-class>pl.letsplay.jsp.servlet.CreateMeetingServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -35,6 +47,10 @@
   <servlet-mapping>
   	<servlet-name>PasswordReminderServlet</servlet-name>
   	<url-pattern>/passwordReminder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateMeetingServlet</servlet-name>
+  	<url-pattern>/CreateMeeting</url-pattern>
   </servlet-mapping>
 
 </web-app>
