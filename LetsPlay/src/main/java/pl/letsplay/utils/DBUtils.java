@@ -27,4 +27,9 @@ public class DBUtils {
 		  return null;
 	  }
 
+	  public static User registerUser(Connection conn, String login, String email, String password) throws SQLException {
+		  //Zwraca null jak się nie uda dodać a jak się uda to zwraca tego użytkownika
+		  
+		  return null;
+	  }
 }
