@@ -11,10 +11,22 @@
 <div class="frame">
 <div class="form">
 <h1>Przypomnienie hasła</h1>
-<form name="data" method="post">
+<form name="passwordReminder" action="passwordReminder" method="get">
 	<p>Podaj email</p>
 	<input type="text" name="email" />
 	<input type="submit" name="remind" value="Przypomnij hasło">
+	<%
+ 		Object password = request.getAttribute("password");
+		Object success = request.getAttribute("success");
+		if(success != null) {
+			if(password == null) {
+				request.setAttribute("password", "Account with that email don't exist");
+			}
+		} else {
+			request.setAttribute("password", "");
+		}
+ 	%>
+	<div><%=request.getAttribute("password") %></div>
 </form>
 </div></div>
 </body>
