@@ -26,7 +26,7 @@
   
   <build>
     <finalName>LetsPlay</finalName>
-    <defaultGoal>validate compile test integration-test verify install</defaultGoal>
+    <defaultGoal>validate compile test integration-test verify install javadoc:javadoc</defaultGoal>
     <plugins>
        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
