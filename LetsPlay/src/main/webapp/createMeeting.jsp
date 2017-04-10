@@ -11,7 +11,8 @@
 <div class="frame">
 <div class="form">
 <h1>Utwórz spotkanie</h1>
-<form name="data" method="post">
+<form name="data" method="post" action="CreateMeeting">
+
 	<p>Widoczność: *</p>
 	<select name="priv">
 	  <option value="prywatne">prywatne</option>
