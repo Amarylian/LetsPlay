@@ -11,7 +11,7 @@
 <div class="frame">
 <div class="form">
 <h1>Rejestracja</h1>
-<form name="data" method="post">
+<form action = "register" name="data" method="post">
 	<p>Login</p>
 	<input type="text" name="login" />
 	<p>E-mail</p>
