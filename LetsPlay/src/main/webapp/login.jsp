@@ -8,14 +8,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
- 		<table id="login" name="data" method="get">
+	<form action="login" method="get">
+ 		<table id="login">
+ 		 	<%
+ 			Object login = request.getAttribute("login");
+ 			if(login == null) {
+				request.setAttribute("login", "");
+ 			}
+ 			%>
  			<tr>
- 				<td><span>Login:</span> <input type="text" name="login"></td>
+ 				<td><span>Login:</span> <input type="text" name="login" value="<%= request.getAttribute("login") %>"></td>
  			</tr>
  			<tr>
  				<td><span>Hasło:</span> <input type="password" name="password"></td>
  			</tr>
+ 			<%
+ 			Object success = request.getAttribute("success");
+ 			String error = "";
+ 			if(success != null) {
+ 				if((boolean)success == false) {
+ 					error = "Nie udało się zalogować";
+ 				}
+ 			}
+ 			%>
+ 			<tr>
+ 				<td><span class="errorMessage"><%=error%></span></td>
+ 			</tr>
+
  			<tr>
  				<td><input type="submit" value="Zaloguj się" onclick=""></td>
  			</tr>
