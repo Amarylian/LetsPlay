@@ -4,31 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
 <title>Let's play - Tworzenie spotkania</title>
-<style>
-
-	html
-	{
-		background-color: purple;
-	}
-	
-	.form{
-	margin: auto;
-		text-align: center;
-		border: 2px solid purple;
-		background-color: yellow;
-		width: 60%;
-	}
-	.form input{
-		width=70%
-	}
-	
-	.frame{
-	padding: 100px;
-		margin: 100px;
-		background-color: purple;
-	}
-</style>
 </head>
 <body>
 <div class="frame">
