@@ -7,7 +7,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pl.letsplay.beans.User;
+import pl.letsplay.utils.DBUtils;
+
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -27,17 +32,21 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
         response.setContentType("text/html; charset=UTF-8");
 
 		String login = request.getParameter("login");
 	    String password = request.getParameter("password");  
 	    
-	    //PrintWriter out = response.getWriter();
-	    //validate
-	    if(false) {
-	    	RequestDispatcher rd=request.getRequestDispatcher("home.jsp");  
-	    	// TODO save token in seesion
+	    User user = null;
+		try {
+			user = DBUtils.findUser(null, login, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	    
+	    if(user != null) {
+	    	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  
+	    	request.getSession().setAttribute("user", user);
 	    	rd.include(request,response); 
 	    } else {
 	    	RequestDispatcher rd=request.getRequestDispatcher("login.jsp");  
@@ -45,6 +54,5 @@ public class LoginServlet extends HttpServlet {
 	    	request.setAttribute("login", login);
 	    	rd.include(request,response);
 	    }
-        //out.close();
 	}
 }

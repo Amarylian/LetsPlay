@@ -1,12 +1,16 @@
 package pl.letsplay.jsp.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pl.letsplay.beans.User;
+import pl.letsplay.utils.DBUtils;
 
 /**
  * Servlet implementation class PasswordReminderServlet
@@ -30,10 +34,15 @@ public class PasswordReminderServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 		String email = request.getParameter("email");
     	RequestDispatcher rd=request.getRequestDispatcher("passwordReminder.jsp");  
-		//validate
-	    if(false) {
-	    	//Pobranie password
-	    	//request.setAttribute("password", password);
+	    User user = null;
+		try {
+			user = DBUtils.findUser(null, email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	    if(user != null) {
+	    	request.setAttribute("password", user.getPassword());
 	    	request.setAttribute("success", true);
 	    } else {
 	    	request.setAttribute("password", null);
