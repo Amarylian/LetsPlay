@@ -13,7 +13,8 @@ import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class PasswordReminderServlet
+ * Klasa implementująca Servlet do obsługi przypominania hasła
+ * obsługuje stronę przypominania hasła
  */
 public class PasswordReminderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,10 @@ public class PasswordReminderServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+    /**
+	 * Obsługa formularza przypomnienia hasla
+	 * Pobiera email z formularza i przesyła go do klasy łączącej z bazą danych, następnie wyświetla hasło użytkownika
+	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

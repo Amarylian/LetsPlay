@@ -13,7 +13,7 @@ import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class RegisterServlet. 
+ * Klasa implementująca Servlet do obsługi rejestracji
  * obsługuje stronę rejestrowania użytkownika
  */
 public class RegisterServlet extends HttpServlet {

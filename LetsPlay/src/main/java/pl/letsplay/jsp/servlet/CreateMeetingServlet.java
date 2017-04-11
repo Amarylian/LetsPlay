@@ -13,7 +13,7 @@ import pl.letsplay.beans.Meeting;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class CreateMeetingServlet. 
+ * Klasa implementująca Servlet do tworzenia spotkania
  * obsługuje stronę tworzenia spotkania
  */
 public class CreateMeetingServlet extends HttpServlet {
