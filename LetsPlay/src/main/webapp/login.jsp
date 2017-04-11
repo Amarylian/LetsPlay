@@ -18,7 +18,7 @@
  			}
  			%>
  			<tr>
- 				<td><span>Login:</span> <input type="text" name="login" value="<%= request.getAttribute("login") %>"></td>
+ 				<td><span>Email:</span> <input type="text" name="login" value="<%= request.getAttribute("login") %>"></td>
  			</tr>
  			<tr>
  				<td><span>Hasło:</span> <input type="password" name="password"></td>

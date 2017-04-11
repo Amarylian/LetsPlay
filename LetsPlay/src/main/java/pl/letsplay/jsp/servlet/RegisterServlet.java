@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
 			User user = null;
 
 			try {
-				 user = DBUtils.registerUser(null, login,name, surname, email, passwd);
+				 user = DBUtils.createUser(login,name, surname, email, passwd);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -71,6 +71,8 @@ public class RegisterServlet extends HttpServlet {
 				rd.include(request,response);
 			}
 		}
+		
+		
 
 			
 

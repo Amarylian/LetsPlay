@@ -2,7 +2,7 @@ package pl.letsplay.beans;
 
 public class User {
 	
-	private String user_id;
+	private int user_id;
 	private String email;
 	private String name;
 	private String surname;
@@ -10,14 +10,28 @@ public class User {
 	private String password;
 	
 	public User(){
-		
+		this.user_id = -1;
+		this.email = null;
+		this.name = null;
+		this.surname = null;
+		this.nick = null;
+		this.password = null;
+	}
+	
+	public User(int id, String email, String name, String surname, String nick, String password){
+		this.user_id = id;
+		this.email = email;
+		this.name = name;
+		this.surname = surname;
+		this.nick = nick;
+		this.password = password;
 	}
 
-	public String getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(String user_id) {
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
 
@@ -61,6 +75,11 @@ public class User {
 		this.password = password;
 	}
 	
-	
+	public String toString(){
+		String res = "User "+user_id+": "+email+" ("+name;
+		if(nick!=null) res = res + " '"+nick+"'";
+		res = res + " " + surname + " ["+password+"]";
+		return res;
+	}
 
 }

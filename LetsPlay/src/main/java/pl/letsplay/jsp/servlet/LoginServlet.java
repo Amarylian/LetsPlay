@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 	    
 	    User user = null;
 		try {
-			user = DBUtils.findUser(null, login, password);
+			user = DBUtils.findUser(login, password);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -36,7 +36,7 @@ public class PasswordReminderServlet extends HttpServlet {
     	RequestDispatcher rd=request.getRequestDispatcher("passwordReminder.jsp");  
 	    User user = null;
 		try {
-			user = DBUtils.findUser(null, email);
+			user = DBUtils.findUser(email);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

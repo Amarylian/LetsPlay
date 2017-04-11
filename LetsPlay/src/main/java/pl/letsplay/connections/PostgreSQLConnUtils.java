@@ -53,7 +53,15 @@ public class PostgreSQLConnUtils {
 	 */
 	 private static Connection getPostgreSQLConnection(String hostName, String port, String database, String userName, String password) throws SQLException
 	 {
+		 try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("nie znaleziono org.postgresql.Driver");
+		}
 	     String connectionURL = "jdbc:postgresql://" + hostName + ":" + port + "/" + database;
+	     
+	     connectionURL = connectionURL + "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+	     
 	     Connection conn = DriverManager.getConnection(connectionURL, userName, password);
 	     return conn;
 	 }
