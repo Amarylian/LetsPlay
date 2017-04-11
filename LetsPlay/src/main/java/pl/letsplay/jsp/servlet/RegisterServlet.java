@@ -13,7 +13,8 @@ import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class RegisterServlet. 
+ * obsługuje stronę rejestrowania użytkownika
  */
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,11 +27,11 @@ public class RegisterServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 
 	/**
+	 * Obsługa formularza do rejestracji.
+	 * Pobiera dane z formularza rejestracji i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie.
+	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
