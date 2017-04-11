@@ -33,7 +33,7 @@ public class PostgreSQLConnUtils {
 	private static String password = "abafdb6d66f34cc603e5d586481f7671373845e529e11929f097d734d3228272";
 	    
 	/**
-	 * Metoda tworząca połaczenie z bazą danych
+	 * Metoda tworząca połaczenie z bazą danych dla domyślnych parametrów  z użyciem SSL
 	 * @return połaczenie z bazą danych
 	 * @throws SQLException
 	 */
@@ -42,7 +42,7 @@ public class PostgreSQLConnUtils {
 	 }
 	 
 	/**
-	 * Metoda tworząca połączenie z bazą danych
+	 * Metoda tworząca połączenie z bazą danych z użyciem SSL
 	 * @param hostName nazwa hosta
 	 * @param port numer portu
 	 * @param database nazwa bazy danych
@@ -51,7 +51,7 @@ public class PostgreSQLConnUtils {
 	 * @return połaczenie z bazą danych
 	 * @throws SQLException
 	 */
-	 private static Connection getPostgreSQLConnection(String hostName, String port, String database, String userName, String password) throws SQLException
+	 public static Connection getPostgreSQLConnection(String hostName, String port, String database, String userName, String password) throws SQLException
 	 {
 		 try {
 			Class.forName("org.postgresql.Driver");

@@ -55,7 +55,7 @@ public class CreateMeetingServlet extends HttpServlet {
 		String attentions=request.getParameter("attentions");
 		Meeting res=null;
 		try {
-			res = DBUtils.createMeeting(priv, city, date, time, address, address2, number, attentions);
+			res = DBUtils.createMeeting(true, city, date, time, address, true, 5, attentions);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

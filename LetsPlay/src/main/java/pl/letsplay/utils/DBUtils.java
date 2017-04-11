@@ -190,25 +190,37 @@ public class DBUtils {
 	  }
 	  
 	  /**
-	   * Utworzenie spotkania
-	   * @param priv widoczności spotkania
-	   * @param city miasto
-	   * @param date data spotkania
-	   * @param time godzina spotkania
-	   * @param address miejsce spotkania
-	   * @param address2 miejsce spotkania
+	   * Tworzenie spotkania
+	   * @param priv widoczność spotkania (true, jeśli prywatne)
+	   * @param city miasto spotkania
+	   * @param date data spotkania w formacie 'YYYY-MM-DD'
+	   * @param time godzina spotkania w formacie 'HH24:MI'
+	   * @param address adres spotkania
+	   * @param addressVisible widoczność adresu (true, jeśli widoczny dla wszystkich)
 	   * @param number maksymalna liczba graczy
-	   * @param attentions
-	   * @return utworzone spotkanie; null w przypadku niepowodzenia
+	   * @param attentions uwagi do spotkania
+	   * @return utworzone spotkanie; null jeśli wystąpiła błąd
 	   * @throws SQLException
 	   */
-	  public static Meeting createMeeting(String priv, String city, String date, String time, String address, String address2, String number, String attentions) throws SQLException {
-		  //Connection conn = ConnectionUtils.getConnection();
+	  	public static Meeting createMeeting(boolean priv, String city, String date, String time, String address, boolean addressVisible, int number, String attentions) throws SQLException {
 		  
-		  System.out.println(priv+"   "+city+"   "+date+"   "+time+"  "+address+"   "+ address2+"   "+ number+"   "+attentions);
+	  		Connection conn = ConnectionUtils.getConnection();
+	  		try{
+		  Statement stmt;
+		  int id = 0;
+		  Meeting meeting = null;
+			String fullDate = date + " " + time;
+			String query = "INSERT INTO data.meetings(city,address,date,private,address_visible,max_players_number,attentions) VALUES('"+
+					city+"','"+address+"',to_timestamp('"+fullDate+"','YYYY-MM-DD HH24:MI'),'"+priv+"','"+addressVisible+"','"+number+"','"+attentions+"');";
+			stmt = conn.createStatement();
+			id = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			stmt.close();
+	  		}catch (SQLException e) {
+				conn.close();
+				return null;
+			}
+	  		conn.close();
 		  
-
-		  
-		  return null;
+		  return new Meeting();
 	  }
 }
