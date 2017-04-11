@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class CreateMeetingServlet
- * obsługuje stronę rejestrac spotkania
+ * Servlet implementation class CreateMeetingServlet. 
+ * obsługuje stronę tworzenia spotkania
  */
 public class CreateMeetingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +36,7 @@ public class CreateMeetingServlet extends HttpServlet {
 	}
 
 	/**
-	 * Obsługa formularza
+	 * Obsługa formularza.
 	 * Pobiera dane z formularza tworzenia spotkania i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie
 	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
