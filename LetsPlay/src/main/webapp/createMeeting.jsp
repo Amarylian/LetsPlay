@@ -33,8 +33,19 @@
 	<p>Uwagi: </p>
 	<textarea name="attentions" rows="10" cols="30">Tu wpisz uwagi</textarea>
 	<br>
+		 <%
+		String error = "";
+ 		Object success = request.getAttribute("success");
+ 		if(success != null) {
+ 			if(Boolean.valueOf(success.toString()) == false) {
+ 				error = "Rejestracja nie powiodła się";
+ 			}
+ 		}
+ 			
+ 	%>
 	<input type="submit" name="create" value="Utwórz spotkanie">
 	<input type="submit" name="cancel" value="Anuluj">
+		<div class="errorMessage"><%=error%></div>
 </form>
 </div></div>
 </body>
