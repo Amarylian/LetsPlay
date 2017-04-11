@@ -39,7 +39,7 @@ public class CreateMeetingServlet extends HttpServlet {
 	/**
 	 * Obsługa formularza.
 	 * Pobiera dane z formularza tworzenia spotkania i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie
-	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
+	 * @see DBUtils#createMeeting(boolean, String, String, String, String, boolean, int, String)
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -31,7 +31,6 @@ public class RegisterServlet extends HttpServlet {
 	/**
 	 * Obsługa formularza do rejestracji.
 	 * Pobiera dane z formularza rejestracji i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie.
-	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

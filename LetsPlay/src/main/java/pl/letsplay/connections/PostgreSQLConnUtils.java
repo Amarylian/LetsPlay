@@ -35,7 +35,7 @@ public class PostgreSQLConnUtils {
 	/**
 	 * Metoda tworząca połaczenie z bazą danych dla domyślnych parametrów  z użyciem SSL
 	 * @return połaczenie z bazą danych
-	 * @throws SQLException
+	 * @throws SQLException bład podczas nawiązywania połaczenia
 	 */
 	public static Connection getPostgreSQLConnection() throws SQLException {
 	     return getPostgreSQLConnection(hostName, port, database, userName, password);
@@ -49,7 +49,7 @@ public class PostgreSQLConnUtils {
 	 * @param userName nazwa u�ytkownika
 	 * @param password has�o u�ytkownika
 	 * @return połaczenie z bazą danych
-	 * @throws SQLException
+	 * @throws SQLException bład podczas nawiązywania połaczenia
 	 */
 	 public static Connection getPostgreSQLConnection(String hostName, String port, String database, String userName, String password) throws SQLException
 	 {

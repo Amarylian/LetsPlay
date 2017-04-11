@@ -24,7 +24,7 @@ public class DBUtils {
 	 * @param userEmail email użytkownika
 	 * @param password hasło do logowania
 	 * @return znaleziony uzytkownik; null w przypadku braku dopasowania w bazie
-	 * @throws SQLException
+	 * @throws SQLException błąd podczas połaczenia z bazą danych
 	 */
 	public static User findUser(String userEmail, String password) throws SQLException {
 		Connection conn = ConnectionUtils.getConnection();
@@ -56,7 +56,7 @@ public class DBUtils {
 	 * Szukanie użytkownika po emailu
 	 * @param email email szukanego użytkownika
 	 * @return znaleziony uzytkownik (w przypadku wielu dopasowań jeden losowy); null w przypadku braku dopasowania
-	 * @throws SQLException
+	 * @throws SQLException błąd podczas połaczenia z bazą danych
 	 */
 	  public static User findUser(String email) throws SQLException {
 		  Connection conn = ConnectionUtils.getConnection();
@@ -92,7 +92,7 @@ public class DBUtils {
 	   * Szukanie uzytkownika po id
 	   * @param id id użytkownika
 	   * @return znaleziony uzytkownik (w przypadku wielu dopasowań jeden losowy); null w przypadku braku dopasowania
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static User findUser(int id) throws SQLException {
 		  Connection conn = ConnectionUtils.getConnection();
@@ -125,7 +125,7 @@ public class DBUtils {
 	  /**
 	   * Znajduje wszystkich użytkowników
 	   * @return lista wszystkich użytkowników
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<User> queryUser() throws SQLException {
 		  Connection conn = ConnectionUtils.getConnection();
@@ -158,13 +158,13 @@ public class DBUtils {
 
 	  /**
 	   * Tworzenie użytkownika
-	   * @param login nick użytkownika
+	   * @param nick nick użytkownika
 	   * @param name imię użytkownika
 	   * @param surname nazwisko użytkownika
 	   * @param email email uzytkownika
 	   * @param password hasło do logowania
 	   * @return utworzony uzytkownik; null w przypadku niepowodzenia
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static User createUser(String nick, String name, String surname, String email, String password) throws SQLException {
 		  Connection conn = ConnectionUtils.getConnection();
@@ -200,7 +200,7 @@ public class DBUtils {
 	   * @param number maksymalna liczba graczy
 	   * @param attentions uwagi do spotkania
 	   * @return utworzone spotkanie; null jeśli wystąpiła błąd
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  	public static Meeting createMeeting(boolean priv, String city, String date, String time, String address, boolean addressVisible, int number, String attentions) throws SQLException {
 		  

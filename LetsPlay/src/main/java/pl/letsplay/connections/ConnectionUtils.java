@@ -12,7 +12,7 @@ public class ConnectionUtils {
 	/**
 	 * Utworzenie połaczenia z bazą danych
 	 * @return połaczenie z bazą
-	 * @throws SQLException
+	 * @throws SQLException bład podczas nawiązywania połaczenia
 	 */
 	public static Connection getConnection() throws SQLException {
      
