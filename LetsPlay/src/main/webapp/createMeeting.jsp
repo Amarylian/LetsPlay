@@ -38,13 +38,14 @@
  		Object success = request.getAttribute("success");
  		if(success != null) {
  			if(Boolean.valueOf(success.toString()) == false) {
- 				error = "Rejestracja nie powiodła się";
+ 				error = "Utworzenie nie powiodło się";
  			}
  		}
  			
  	%>
 	<input type="submit" name="create" value="Utwórz spotkanie">
-	<input type="submit" name="cancel" value="Anuluj">
+	<input type="reset" name="cancel" value="Anuluj">
+	<a href="index.jsp"><button type="button">Powrót</button></a>
 		<div class="errorMessage"><%=error%></div>
 </form>
 </div></div>

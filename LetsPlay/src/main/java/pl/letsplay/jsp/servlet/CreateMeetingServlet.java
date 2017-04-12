@@ -28,34 +28,30 @@ public class CreateMeetingServlet extends HttpServlet {
     }
 
 	/**
-	 * not used
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * Obsługa formularza.
 	 * Pobiera dane z formularza tworzenia spotkania i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie
-	 * @see DBUtils#createMeeting(boolean, String, String, String, String, boolean, int, String)
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html; charset=UTF-8");
 		String priv=request.getParameter("priv");
+		boolean pv;
+		if(priv.equals("prywatne"))pv=true;
+		else pv=false;
 		String city=request.getParameter("city");
 		String date=request.getParameter("dat");
 		String time=request.getParameter("tim");
 		String address=request.getParameter("address");
 		String address2=request.getParameter("address2");
+		boolean ad2;
+		if(address2!=null)ad2=true;
+		else ad2=false;
 		String number=request.getParameter("number");
+		int num= new Integer(number);
 		String attentions=request.getParameter("attentions");
 		Meeting res=null;
 		try {
-			res = DBUtils.createMeeting(true, city, date, time, address, true, 5, attentions);
+			res = DBUtils.createMeeting(pv, city, date, time, address, ad2, num, attentions);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
     /**
 	 * Obsługa formularza logowania
 	 * Pobiera dane z formularza logowania i przesyła je do klasy łączącej z bazą danych, następnie pokazuje ewentualny komunikat o błędzie
-	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 

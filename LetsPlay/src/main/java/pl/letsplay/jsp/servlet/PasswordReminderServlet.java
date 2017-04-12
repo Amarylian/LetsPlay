@@ -30,7 +30,6 @@ public class PasswordReminderServlet extends HttpServlet {
     /**
 	 * Obsługa formularza przypomnienia hasla
 	 * Pobiera email z formularza i przesyła go do klasy łączącej z bazą danych, następnie wyświetla hasło użytkownika
-	 * @see DBUtils#createMeeting(java.sql.Connection, String, String, String, String, String, String, String, String)
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
