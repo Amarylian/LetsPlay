@@ -8,8 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<form action="login" method="get" class="form">
+	<%@include file="/_header.jsp" %>
+	<%@include file="/_menu.jsp" %>
+	<div class="frame">
+	<div class="form">
+	<h1>Logowanie</h1>
+	<form action="login" method="get">
  		<table id="login">
  		 	<%
  			Object login = request.getAttribute("login");
@@ -44,5 +48,7 @@
  			</tr>
  		</table>
 	</form>
+	</div>
+	</div>
 </body>
 </html>

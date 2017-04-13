@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
 #login {
-	/*margin: 50px;*/
 	width: 100%;
 	display:flex;
 	justify-content:center;
@@ -51,3 +50,53 @@
 		margin: 100px;
 		background-color: purple;
 	}
+	
+#header {
+	text-align: center;
+	background-color: yellow;
+ 	position: absolute;
+  	top: 0;
+  	width: 100%;
+  	padding: 0 0 0 0;
+  	margin: 0 0 0 0;
+    height: 90px;
+}
+
+#header-padding {
+	padding: 90px 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.reset-body {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+#menu {
+	position: absolute;
+	left: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	text-align: center;
+	border: 2px solid purple;
+	background-color: yellow;	
+	width: 400px;
+	clear: both;
+}
+
+#menu-padding {
+	padding: 0 0 0 400px;
+	margin: 0 0 0 0;
+	width:0px;
+	clear: both;
+}
+
+#menu a {
+	text-decoration:none;
+	margin-top:30px;
+	margin-bottom:30px;	
+	justify-content:center;
+	align-items:center;
+	text-align: center;
+	font-size:30px;
+}

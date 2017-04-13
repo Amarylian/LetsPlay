@@ -8,6 +8,8 @@
 <title>Let's play - Tworzenie spotkania</title>
 </head>
 <body>
+<%@include file="/_header.jsp" %>
+<%@include file="/_menu.jsp" %>
 <div class="frame">
 <div class="form">
 <h1>Utwórz spotkanie</h1>

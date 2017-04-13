@@ -8,6 +8,8 @@
 <title>Let's play - Rejestracja</title>
 </head>
 <body>
+<%@include file="/_header.jsp" %>
+<%@include file="/_menu.jsp" %>
 <div class="frame">
 <div class="form">
 <h1>Rejestracja</h1>
@@ -21,9 +23,9 @@
 	<p>E-mail</p>
 	<input type="text" name="email" />
 	<p>Hasło</p>
-	<input type="text" name="passwd" />
+	<input type="password" name="passwd" />
 	<p>Powtórz hasło</p>
-	<input type="text" name="passwd2" />
+	<input type="password" name="passwd2" />
 	<p />
 	 <%
 		Object passwd = request.getAttribute("password");

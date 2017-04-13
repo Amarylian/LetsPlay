@@ -8,6 +8,8 @@
 <title>Let's play - Przypomnienie hasła</title>
 </head>
 <body>
+	<%@include file="/_header.jsp" %>
+	<%@include file="/_menu.jsp" %>
 <div class="frame">
 <div class="form">
 <h1>Przypomnienie hasła</h1>
