@@ -9,9 +9,6 @@
 </head>
 <body>
 	<%@include file="/_header.jsp" %>
-	<div class = "form links"><a class = "links" href="/LetsPlay/register.jsp">Rejestracja</a></div>
-	<div class = "form links"><a class = "links" href="/LetsPlay/login.jsp">Logowanie</a></div>
-	<div class = "form links"><a class = "links" href="/LetsPlay/createMeeting.jsp">Utwórz spotkanie</a></div>
-
+	<%@include file="/_menu.jsp" %>
 </body>
 </html>

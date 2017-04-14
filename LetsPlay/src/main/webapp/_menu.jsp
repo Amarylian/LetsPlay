@@ -1,3 +1,5 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,17 +10,35 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body class="reset-body">
-	<table id="menu">
-	<tr>
-		<td><div><a href="/LetsPlay/register.jsp">Rejestracja</a></div></td>
-	</tr>
-	<tr>
-		<td><div><a href="/LetsPlay/login.jsp">Logowanie</a></div></td>
-	</tr>
-	<tr>
-		<td><div><a href="/LetsPlay/createMeeting.jsp">Utwórz spotkanie</a></div></td>
-	</tr>
-	</table>
+
+	<%
+	boolean zalogowany = false;
+	Object user = request.getSession().getAttribute("user");
+	Map<String, String> arrayOfLinks = new HashMap<String, String>();
+	if(user != null) {
+		arrayOfLinks.put("Logout", "Wyloguj");
+		arrayOfLinks.put("CreateMeeting", "Utwórz spotkanie");
+
+	} else {
+		arrayOfLinks.put("Register", "Rejestracja");
+		arrayOfLinks.put("Login", "Logowanie");
+	}
+	request.setAttribute("arrayOfLinks", arrayOfLinks);
+	%>
+	<form  method="post" action="MenuServlet" >
+		<table id="menu"> 
+    	<%
+    	for (Map.Entry<String, String> entry : arrayOfLinks.entrySet()) {
+        	String key = entry.getKey();
+        	String value = entry.getValue();
+        	%>
+        	<tr><td><button type="submit" name="button" class="links" value=<%=key%>><%=value%></button></td></tr>
+        	<%
+   		}
+    	%>    
+		</table>
+	</form>	
 	<div id="menu-padding"></div>
+
 </body>
 </html>
