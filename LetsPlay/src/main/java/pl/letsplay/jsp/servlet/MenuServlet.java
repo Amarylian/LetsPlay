@@ -29,9 +29,7 @@ public class MenuServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 		String button = request.getParameter("button");
 		if(button == null) {
-			RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");  
-	    	rd.include(request,response);
-	    	return;
+			button = "";
 		}
 		if(button.equals("Register")) {
 			RequestDispatcher rd=request.getRequestDispatcher("/register.jsp");  
