@@ -25,7 +25,7 @@
 	}
 	request.setAttribute("arrayOfLinks", arrayOfLinks);
 	%>
-	<form  method="post" action="MenuServlet" >
+	<form  method="get" action="MenuServlet" >
 		<table id="menu"> 
     	<%
     	for (Map.Entry<String, String> entry : arrayOfLinks.entrySet()) {
