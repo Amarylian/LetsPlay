@@ -62,38 +62,39 @@ public class UserTest {
 	@Test
 	public void testGetSurname() {
 		assertEquals(null, this.emptyUser.getSurname());
-		assertEquals(null, this.emptyNickUser.getSurname());
-		assertEquals("nickTest", this.user.getSurname());
+		assertEquals("surnameTest", this.emptyNickUser.getSurname());
+		assertEquals("surnameTest", this.user.getSurname());
 	}
 
 	@Test
 	public void testSetSurname() {
 		this.emptyUser.setSurname("test");
-		assertEquals("test", this.emptyUser.getSurname());	}
+		assertEquals("test", this.emptyUser.getSurname());	
+	}
 
 	@Test
 	public void testGetNick() {
-		fail("Not yet implemented");
+		assertEquals(null, this.emptyUser.getNick());
+		assertEquals(null, this.emptyNickUser.getNick());
+		assertEquals("nickTest", this.user.getNick());
 	}
 
 	@Test
 	public void testSetNick() {
-		fail("Not yet implemented");
+		this.emptyUser.setNick("test");
+		assertEquals("test", this.emptyUser.getNick());
 	}
 
 	@Test
 	public void testGetPassword() {
-		fail("Not yet implemented");
+		assertEquals(null, this.emptyUser.getPassword());
+		assertEquals("passwordTest", this.emptyNickUser.getPassword());
+		assertEquals("passwordTest", this.user.getPassword());
 	}
 	
 	@Test
 	public void testSetPassword() {
-		fail("Not yet implemented");
+		this.emptyUser.setPassword("test");
+		assertEquals("test", this.emptyUser.getPassword());
 	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
 }
