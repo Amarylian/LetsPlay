@@ -1,7 +1,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +17,9 @@
 	Map<String, String> arrayOfLinks = new HashMap<String, String>();
 	if(user != null) {
 		arrayOfLinks.put("Logout", "Wyloguj");
-		arrayOfLinks.put("CreateMeeting", "Utw�rz spotkanie");
+		arrayOfLinks.put("CreateMeeting", "Utwórz spotkanie");
+		arrayOfLinks.put("GetAllMeetings", "Pokaż wszystkie spotkania");
+		arrayOfLinks.put("FindMeeting", "Wyszukaj spotkanie");
 
 	} else {
 		arrayOfLinks.put("Register", "Rejestracja");
