@@ -1,6 +1,7 @@
 package pl.letsplay.jsp.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.User;
+import pl.letsplay.utils.DBUtils;
 import pl.letsplay.beans.Meeting;
 
 /**
@@ -60,6 +62,13 @@ public class MenuServlet extends HttpServlet {
 			moveToSide(request, response, "/index.jsp");
 		} else if(button.equals("GetAllMeetings")) {
 			ArrayList<Meeting> listOfMeetings = null;
+			try {
+				listOfMeetings = (ArrayList<Meeting>) DBUtils.queryMeeting();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				moveToSide(request, response, "/index.jsp");
+				return;
+			}
 			request.getSession().setAttribute("meetings", listOfMeetings);
 			moveToSide(request, response, "/getAllMettings.jsp");
 		} else if(button.equals("FindMeeting")) {
