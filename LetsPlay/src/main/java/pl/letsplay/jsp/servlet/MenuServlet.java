@@ -57,7 +57,7 @@ public class MenuServlet extends HttpServlet {
 			request.getSession().setAttribute("user", null);
 			moveToSide(request, response, "/index.jsp");
 		} else if(button.equals("GetAllMeetings")) {
-			//moveToSide(request, response, "/mettingList.jsp");
+			moveToSide(request, response, "/getAllMettings.jsp");
 		} else if(button.equals("FindMeeting")) {
 			moveToSide(request, response, "/findMeeting.jsp");
 		} else {
