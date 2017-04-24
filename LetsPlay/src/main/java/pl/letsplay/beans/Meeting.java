@@ -13,7 +13,7 @@ public class Meeting {
 	private String attentions;
 	
 	
-	public Meeting(boolean priv, String city, String date, String time, String address, boolean addressVisible,
+	public Meeting(int id, boolean priv, String city, String date, String time, String address, boolean addressVisible,
 			int actualNumber, int maxNumber, String attentions) {
 		super();
 		this.priv = priv;

@@ -14,28 +14,20 @@ import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class GetAllMeetingsServlet
+ * Klasa implementująca Servlet do obsługi wyświetlania wszystkich spotkań
+ * obsługuje stronę wyświetlania spotkań
  */
 public class GetAllMeetingsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public GetAllMeetingsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
+	 * Obsługa wybierania widoku szczegółowego. Po kliknięciu na przycisk, konkretne spotkanie zostaje zapisane jako atrybut sesji.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,11 +35,9 @@ public class GetAllMeetingsServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 		String button = request.getParameter("button");
 		Meeting m = null;
-		try {
-			m = DBUtils.findMeeting(button);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+
+			m = DBUtils.findMeeting(Integer.parseInt(button));
+
 		
 		if(m != null) {
 	    	RequestDispatcher rd=request.getRequestDispatcher("getAllMeetings.jsp");  
