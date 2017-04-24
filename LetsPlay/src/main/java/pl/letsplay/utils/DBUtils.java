@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import pl.letsplay.beans.Meeting;
 import pl.letsplay.beans.User;
@@ -222,5 +223,32 @@ public class DBUtils {
 	  		conn.close();
 		  
 		  return new Meeting();
+	  }
+	  
+	  	/**
+	  	 * Wyszukiwanie spotkania po id
+	  	 * @param id id spotkania
+	  	 * @return znalezione spotkanie, null jeśli wystąpiła błąd
+	  	 */
+	  public static Meeting findMeeting(int id){
+		  return null;
+	  }
+	  
+	  /**
+	   * Znalezienie wszystkich spotkanń
+	   * @return lista spotkań, null w przypadku błędu
+	   */
+	  public static List<Meeting> queryMeeting(){
+		  return null;
+	  }
+	  
+	  /**
+	   * 
+	   * Znalezienie spotkań zgodnych z podanymi atrybutami
+	   * @param attributes mapa atrybutów (keys: city, address, date_from, date_to, attentions)
+	   * @return lista spotkań, null w przypadku błędu
+	   */
+	  public static List<Meeting> queryMeeting(Map<String, String> attributes){
+		  return null;
 	  }
 }
