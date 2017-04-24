@@ -41,6 +41,12 @@
   	<description></description>
   	<servlet-class>pl.letsplay.jsp.servlet.MenuServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>GetAllMeetingsServlet</servlet-name>
+  	<display-name>GetAllMeetingsServlet</display-name>
+  	<description></description>
+  	<servlet-class>pl.letsplay.jsp.servlet.GetAllMeetingsServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -61,6 +67,10 @@
   <servlet-mapping>
   	<servlet-name>MenuServlet</servlet-name>
   	<url-pattern>/MenuServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetAllMeetingsServlet</servlet-name>
+  	<url-pattern>/GetAllMeetingsServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
