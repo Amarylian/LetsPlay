@@ -1,6 +1,7 @@
 package pl.letsplay.jsp.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.User;
+import pl.letsplay.beans.Meeting;
 
 /**
  * Servlet implementation class menuServlet
@@ -57,6 +59,8 @@ public class MenuServlet extends HttpServlet {
 			request.getSession().setAttribute("user", null);
 			moveToSide(request, response, "/index.jsp");
 		} else if(button.equals("GetAllMeetings")) {
+			ArrayList<Meeting> listOfMeetings = null;
+			request.getSession().setAttribute("meetings", listOfMeetings);
 			moveToSide(request, response, "/getAllMettings.jsp");
 		} else if(button.equals("FindMeeting")) {
 			moveToSide(request, response, "/findMeeting.jsp");
