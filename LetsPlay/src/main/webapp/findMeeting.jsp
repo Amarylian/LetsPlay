@@ -16,12 +16,10 @@
 		<form name="data" method="get" action="FindMeeting">
 			<p>Miejscowość:</p>
 			<input type="text" name="city" />
-			<p>od:</p>
-			<input type="date" name="date" />
-			<p>do:</p>
-			<input type="date" name="date" />
-			<p>Godzina:</p>
-			<input type="time" name="time" />
+			<p>od: YYYY-MM-DD</p>
+			<input type="date" name="date_from" />
+			<p>do: YYYY-MM-DD</p>
+			<input type="date" name="date_to" />
 			<p>Adres</p>
 			<input type="text" name="address" />
 			<p>Uwagi: </p>
