@@ -36,7 +36,15 @@ public class GetAllMeetingsServlet extends HttpServlet {
 		String button = request.getParameter("button");
 		Meeting m = null;
 
-			m = DBUtils.findMeeting(Integer.parseInt(button));
+			try {
+				m = DBUtils.findMeeting(Integer.parseInt(button));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		
 		if(m != null) {

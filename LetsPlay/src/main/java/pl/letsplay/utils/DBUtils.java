@@ -176,7 +176,12 @@ public class DBUtils {
 			String SQL = "INSERT INTO data.users(email,name,surname,password,nick) VALUES('"+email+"','"+name+"','"+surname+"','"+password+"','"+nick+"');";
 			stmt = conn.createStatement();
 			System.out.println("DBUtilis:" + SQL);
-			id = stmt.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+			stmt.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = stmt.getGeneratedKeys();
+			rs.next();
+			id = rs.getInt(1);
+			
 			stmt.close();
 			
 		} catch (SQLException e) {
@@ -184,10 +189,10 @@ public class DBUtils {
 			return null;
 		}
 		
-		System.out.println("Created user "+email);
+		System.out.println("Created user "+id);
 		  
 		conn.close();
-		return findUser(email);
+		return findUser(id);
 	  }
 	  
 	  /**
@@ -206,15 +211,20 @@ public class DBUtils {
 	  	public static Meeting createMeeting(boolean priv, String city, String date, String time, String address, boolean addressVisible, int number, String attentions) throws SQLException {
 		  
 	  		Connection conn = ConnectionUtils.getConnection();
+	  		int id = -1;
 	  		try{
 		  Statement stmt;
-		  int id = 0;
 		  Meeting meeting = null;
 			String fullDate = date + " " + time;
 			String query = "INSERT INTO data.meetings(city,address,date,private,address_visible,max_players_number,attentions) VALUES('"+
 					city+"','"+address+"',to_timestamp('"+fullDate+"','YYYY-MM-DD HH24:MI'),'"+priv+"','"+addressVisible+"','"+number+"','"+attentions+"');";
 			stmt = conn.createStatement();
-			id = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = stmt.getGeneratedKeys();
+			rs.next();
+			id = rs.getInt(1);
+			
 			stmt.close();
 	  		}catch (SQLException e) {
 				conn.close();
@@ -222,24 +232,94 @@ public class DBUtils {
 			}
 	  		conn.close();
 		  
-		  return new Meeting();
+		  return findMeeting(id);
 	  }
 	  
 	  	/**
 	  	 * Wyszukiwanie spotkania po id
 	  	 * @param id id spotkania
 	  	 * @return znalezione spotkanie, null jeśli wystąpiła błąd
+	  	 * @throws SQLException 
 	  	 */
-	  public static Meeting findMeeting(int id){
-		  return null;
+	  public static Meeting findMeeting(int id) throws SQLException{
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  Meeting meeting = null;
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+		
+			
+			String SQL =  "SELECT * FROM data.meetings WHERE meeting_id='"+id+"';" ;
+			System.out.println("DBUtils: "+SQL);
+			
+		    ResultSet rs = stmt.executeQuery(SQL);
+		    if ( rs.next() ) {
+		    	int meeting_id = rs.getInt("meeting_id");
+		        boolean priv = rs.getBoolean("private");
+		        String  city = rs.getString("city");
+		        String address = rs.getString("address");
+		        String fullDate = rs.getString("date");
+		        boolean addressVisible = rs.getBoolean("address_visible");
+		        int maxNumber = rs.getInt("max_players_number");
+		        int actualNumber = rs.getInt("players_number");
+		        String attentions = rs.getString("attentions");
+		        //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
+		        
+		        meeting = new Meeting(meeting_id, priv, city, fullDate.substring(0,9), fullDate.substring(11), address, addressVisible,
+						actualNumber, maxNumber, attentions);
+		    }
+		    
+		    rs.close();
+		    stmt.close();
+		    conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		    
+		    
+		    return meeting;
 	  }
 	  
 	  /**
 	   * Znalezienie wszystkich spotkanń
 	   * @return lista spotkań, null w przypadku błędu
+	 * @throws SQLException 
 	   */
-	  public static List<Meeting> queryMeeting(){
-		  return null;
+	  public static List<Meeting> queryMeeting() throws SQLException{
+		  List<Meeting> res = new ArrayList<Meeting>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery( "SELECT * FROM data.meetings;" );
+          while ( rs.next() ) {
+             int id = rs.getInt("meeting_id");
+             boolean priv = rs.getBoolean("private");
+             String  city = rs.getString("city");
+             String address = rs.getString("address");
+             String fullDate = rs.getString("date");
+             boolean addressVisible = rs.getBoolean("address_visible");
+             int maxNumber = rs.getInt("max_players_number");
+             int actualNumber = rs.getInt("players_number");
+             String attentions = rs.getString("attentions");
+             //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
+             
+             res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
+            		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
+ 					actualNumber, maxNumber, attentions));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
 	  }
 	  
 	  /**
@@ -247,8 +327,65 @@ public class DBUtils {
 	   * Znalezienie spotkań zgodnych z podanymi atrybutami
 	   * @param attributes mapa atrybutów (keys: city, address, date_from, date_to, attentions)
 	   * @return lista spotkań, null w przypadku błędu
+	 * @throws SQLException 
 	   */
-	  public static List<Meeting> queryMeeting(Map<String, String> attributes){
-		  return null;
+	  public static List<Meeting> queryMeeting(Map<String, String> attributes) throws SQLException{
+		  List<Meeting> res = new ArrayList<Meeting>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+		  String query = "SELECT * FROM data.meetings";
+		  
+		  if(!attributes.isEmpty()){
+			  query = query + " WHERE ";
+			  boolean first = true;
+			  for(Map.Entry<String, String> entry : attributes.entrySet()){
+				  if(!first) query = query + " AND ";
+				  if(entry.getKey()=="date_from"){
+					  query = query + " date >= to_timestamp('"+entry.getValue()+"','YYYY-MM-DD HH24:MI')";
+				  }
+				  else if(entry.getKey()=="date_to"){
+					  query = query + " date <= to_timestamp('"+entry.getValue()+"','YYYY-MM-DD HH24:MI')";
+				  }
+				  else{
+					  query = query + entry.getKey() + " LIKE '%" + entry.getValue() + "%'";
+				  }
+				  first = false;
+			  }
+		  }
+			  
+		  query = query + ";";
+		  
+		  System.out.println("DBUtils: "+query);
+		  
+          ResultSet rs = stmt.executeQuery(query);
+          while ( rs.next() ) {
+             int id = rs.getInt("meeting_id");
+             boolean priv = rs.getBoolean("private");
+             String  city = rs.getString("city");
+             String address = rs.getString("address");
+             String fullDate = rs.getString("date");
+             boolean addressVisible = rs.getBoolean("address_visible");
+             int maxNumber = rs.getInt("max_players_number");
+             int actualNumber = rs.getInt("players_number");
+             String attentions = rs.getString("attentions");
+             //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
+             
+             res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
+            		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
+ 					actualNumber, maxNumber, attentions));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
 	  }
 }

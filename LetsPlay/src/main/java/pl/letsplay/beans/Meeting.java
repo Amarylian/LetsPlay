@@ -25,7 +25,12 @@ public class Meeting {
 		this.actualNumber = actualNumber;
 		this.maxNumber = maxNumber;
 		this.attentions = attentions;
-		this.id = 5;
+		this.id = id;
+	}
+	
+	public String toString(){
+		return "("+id+") "+address+" "+city+", ("+addressVisible+"), widoczne: "+priv+", data: "+time+" "+date+", "+actualNumber+"/"+
+				maxNumber+", "+attentions;
 	}
 	
 	public boolean isPriv() {

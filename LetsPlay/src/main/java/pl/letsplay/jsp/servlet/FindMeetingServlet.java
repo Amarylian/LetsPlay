@@ -87,14 +87,14 @@ public class FindMeetingServlet extends HttpServlet {
 			attributes.put("attentions", attentions);
 		}
 		ArrayList<Meeting> listOfMeetings = null;
-		//try {
+		try {
 			listOfMeetings = (ArrayList<Meeting>) DBUtils.queryMeeting(attributes);
-		//} catch (SQLException e) {
-		//	e.printStackTrace();
-		//}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		if (listOfMeetings != null) {
 			request.getSession().setAttribute("meetings", listOfMeetings);
-			moveToSide(request, response, "/getAllMettings.jsp");
+			moveToSide(request, response, "/getAllMeetings.jsp");
 		} else {
 			moveToSide(request, response, "/index.jsp");
 		}

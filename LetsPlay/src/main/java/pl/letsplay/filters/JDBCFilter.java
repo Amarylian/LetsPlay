@@ -85,7 +85,7 @@ public class JDBCFilter implements Filter {
 	       // Avoid open connection for commons request
 	       // (for example: image, css, javascript,... )
 	       //
-	       if (this.needJDBC(req)) {
+	       if (false) {
 	 
 	           System.out.println("Open Connection for: " + req.getServletPath());
 	 
