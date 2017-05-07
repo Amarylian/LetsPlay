@@ -1,18 +1,66 @@
 package pl.letsplay.beans;
 
+/**
+ * Klasa będąca odzwierciedleniem rekordów z tabeli data.meetings
+ * @author LU
+ *
+ */
 public class Meeting {
+
+	/**
+	 * id spotkania (unikatowe)
+	 */
 	private int id;
+	/**
+	 * czy spotkanie jest prywatne (widoczne tylko dla zaproszonych użytkowników)
+	 */
 	private boolean priv;
+	/**
+	 * miasto, w którym odbywa się spotkanie
+	 */
 	private String city;
+	/**
+	 * data spotkania (DD-MM-YYYY)
+	 */
 	private String date;
+	/**
+	 * godzina spotkania (HH24:MI)
+	 */
 	private String time;
+	/**
+	 * adres
+	 */
 	private String address;
+	/**
+	 * czy adres jest widoczny dla wszystkich uzytkowników
+	 */
 	private boolean addressVisible; 
+	/**
+	 * maksymalna liczba graczy mogących wziąć udział w spotkaniu
+	 */
 	private int maxNumber;
+	/**
+	 * aktualna liczba graczy biorących udział w spotkaniu
+	 */
 	private int actualNumber;
+	/**
+	 * dodatkowe uwagi 
+	 */
 	private String attentions;
 	
-	
+	/**
+	 * 
+	 * @param id id
+	 * @param priv czy spotkanie prywatne
+	 * @param city miasto
+	 * @param date dzień spotkanie
+	 * @param time godzina spotkania
+	 * @param address adres
+	 * @param addressVisible widoczność adresu
+	 * @param actualNumber aktualna liczba graczy
+	 * @param maxNumber maksymalna liczba graczy
+	 * @param attentions uwagi dodatkowe
+	 */
 	public Meeting(int id, boolean priv, String city, String date, String time, String address, boolean addressVisible,
 			int actualNumber, int maxNumber, String attentions) {
 		super();

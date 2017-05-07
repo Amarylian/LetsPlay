@@ -23,7 +23,7 @@ import pl.letsplay.beans.Meeting;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class FindMeetingServlet
+ * Klasa implementująca Servlet do wyszukiwania spotkania
  */
 public class FindMeetingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,8 +35,9 @@ public class FindMeetingServlet extends HttpServlet {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+	 * Obsługa formularza.
+	 * Pobiera dane z formularza wyszukania spotkania i przesyła je do klasy łączącej z bazą danych, następnie przekierowuje do listy wyfiltrowanych spotkań
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");

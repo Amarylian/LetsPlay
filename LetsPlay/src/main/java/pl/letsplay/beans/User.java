@@ -1,12 +1,35 @@
 package pl.letsplay.beans;
 
+/**
+ * Klasa będąca kontenerem dla rekordów tabeli data.users
+ * @author LU
+ *
+ */
 public class User {
 	
+	/**
+	 * id użytkownika (unikatowe)
+	 */
 	private int user_id;
+	/**
+	 * email użytkownika (unikatowy)
+	 */
 	private String email;
+	/**
+	 * imię użytkownika
+	 */
 	private String name;
+	/**
+	 * nazwisko użytkownika
+	 */
 	private String surname;
+	/**
+	 * nick użytkownika
+	 */
 	private String nick;
+	/**
+	 * hasło do konta
+	 */
 	private String password;
 	
 	public User(){
@@ -17,7 +40,15 @@ public class User {
 		this.nick = null;
 		this.password = null;
 	}
-	
+	/**
+	 * 
+	 * @param id id
+	 * @param email adres email
+	 * @param name imię
+	 * @param surname nazwisko
+	 * @param nick pseudonim
+	 * @param password hasło do konta
+	 */
 	public User(int id, String email, String name, String surname, String nick, String password){
 		this.user_id = id;
 		this.email = email;
