@@ -1,8 +1,6 @@
 package pl.letsplay.jsp.servlet;
 
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -19,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mockito.Mockito;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,20 +27,30 @@ import pl.letsplay.utils.DBUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(DBUtils.class)
 public class LoginServletTest {
+	
+	private HttpServletRequest request;       
+	private HttpServletResponse response;
+	private RequestDispatcher rd;
+	private HttpSession session;
+	
+	@Before
+	public void setUp(){
+		request = Mockito.mock(HttpServletRequest.class);       
+        response = Mockito.mock(HttpServletResponse.class);
+        rd = Mockito.mock(RequestDispatcher.class);
+        session = Mockito.mock(HttpSession.class);
+        PowerMockito.mockStatic(DBUtils.class);
+	}
+	
 
 	@Test
 	public void testDoGetSuccess() throws SQLException, ServletException, IOException {
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);       
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-        RequestDispatcher rd = Mockito.mock(RequestDispatcher.class);
-        HttpSession session = Mockito.mock(HttpSession.class);
         
         Mockito.when(request.getParameter(Mockito.eq("login"))).thenReturn("login");
         Mockito.when(request.getParameter(Mockito.eq("password"))).thenReturn("haslo");
         Mockito.when(request.getRequestDispatcher(Mockito.any(String.class))).thenReturn(rd);
         Mockito.when(request.getSession()).thenReturn(session);
 		
-		PowerMockito.mockStatic(DBUtils.class);
 		PowerMockito.when(DBUtils.findUser(Mockito.eq("login"),Mockito.eq("haslo"))).thenReturn(new User());
 		
 		
@@ -58,20 +67,14 @@ public class LoginServletTest {
 	}
 	
 	@Test
-	public void testDoGetNull() throws SQLException, ServletException, IOException {
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);       
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-        RequestDispatcher rd = Mockito.mock(RequestDispatcher.class);
-        HttpSession session = Mockito.mock(HttpSession.class);
+	public void testDoGetFail() throws SQLException, ServletException, IOException {
         
         Mockito.when(request.getParameter(Mockito.eq("login"))).thenReturn("login");
         Mockito.when(request.getParameter(Mockito.eq("password"))).thenReturn("haslo");
         Mockito.when(request.getRequestDispatcher(Mockito.any(String.class))).thenReturn(rd);
         Mockito.when(request.getSession()).thenReturn(session);
 		
-		PowerMockito.mockStatic(DBUtils.class);
 		PowerMockito.when(DBUtils.findUser(Mockito.eq("login"),Mockito.eq("haslo"))).thenReturn(null);
-		
 		
 		new LoginServlet().doGet(request, response);
 		
@@ -80,9 +83,9 @@ public class LoginServletTest {
 		
 		(Mockito.verify(request, Mockito.times(1))).getParameter(Mockito.eq("login"));
 		(Mockito.verify(request, Mockito.times(1))).getParameter(Mockito.eq("password"));
-		(Mockito.verify(rd, Mockito.times(1))).include(Mockito.any(ServletRequest.class), Mockito.any(ServletResponse.class));
 		(Mockito.verify(request, Mockito.times(1))).setAttribute(Mockito.eq("success"), Mockito.eq(false));
 		(Mockito.verify(request, Mockito.times(1))).setAttribute(Mockito.eq("login"), Mockito.eq("login"));
+		(Mockito.verify(rd, Mockito.times(1))).include(Mockito.any(ServletRequest.class), Mockito.any(ServletResponse.class));
 	}
 
 }
