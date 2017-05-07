@@ -48,8 +48,8 @@ public class GetAllMeetingsServlet extends HttpServlet {
 
 		
 		if(m != null) {
-	    	//RequestDispatcher rd=request.getRequestDispatcher("getAllMeetings.jsp");  
-			RequestDispatcher rd=request.getRequestDispatcher("showMeeting.jsp");
+	    	RequestDispatcher rd=request.getRequestDispatcher("getAllMeetings.jsp");  
+			//RequestDispatcher rd=request.getRequestDispatcher("showMeeting.jsp");
 	    	request.getSession().setAttribute("meeting", m);
 	    	rd.include(request,response); 
 	    } else {
