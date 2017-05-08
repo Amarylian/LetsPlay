@@ -88,7 +88,7 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>GetAllMeetingsServlet</servlet-name>
-  	<url-pattern>/GetAllMeetings</url-pattern>
+  	<url-pattern>/GetAllMeetingsServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>FindMeetingServlet</servlet-name>
