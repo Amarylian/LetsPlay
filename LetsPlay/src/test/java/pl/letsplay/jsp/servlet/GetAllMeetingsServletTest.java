@@ -56,7 +56,7 @@ public class GetAllMeetingsServletTest {
 		
 		(Mockito.verify(request, Mockito.times(1))).getParameter(Mockito.eq("button"));
 		(Mockito.verify(session, Mockito.times(1))).setAttribute(Mockito.eq("meeting"), Mockito.any(Meeting.class));
-		(Mockito.verify(request, Mockito.times(1))).getRequestDispatcher(Mockito.eq("getAllMeetings.jsp"));
+		(Mockito.verify(request, Mockito.times(1))).getRequestDispatcher(Mockito.eq("showMeeting.jsp"));
 		(Mockito.verify(rd, Mockito.times(1))).include(Mockito.any(ServletRequest.class), Mockito.any(ServletResponse.class));
 		
 	}
