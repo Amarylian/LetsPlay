@@ -31,7 +31,7 @@ public class DBUtils {
 		Connection conn = ConnectionUtils.getConnection();
 		User user = null;
 		Statement stmt = conn.createStatement();
-		String SQL = "SELECT * FROM data.users WHERE email='"+userEmail+"';";
+		String SQL = "SELECT * FROM data.users WHERE email='"+userEmail+"' AND password='"+password+"';";
 		System.out.println("DBUtils: "+SQL);
         ResultSet rs = stmt.executeQuery(SQL);
         if ( rs.next() ) {
@@ -49,8 +49,8 @@ public class DBUtils {
         conn.close();
         
         System.out.println("Finded user "+user);
-        
-        if(user.getPassword()!=password) return null;
+        System.out.println(userEmail+" "+password);
+        //if(user.getPassword().equals(password)) return null;
 	    return user;
 	  }
 	 
