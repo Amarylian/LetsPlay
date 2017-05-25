@@ -50,6 +50,7 @@ public class DBUtils {
         
         System.out.println("Finded user "+user);
         
+        if(user.getPassword()!=password) return null;
 	    return user;
 	  }
 	 
