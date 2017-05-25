@@ -440,5 +440,9 @@ public class DBUtils {
 			stmt.close();
 			conn.close();
 	  }
+	  public static List<Meeting> myMeeting(User user) throws SQLException{
+		  //zwraca wydarzenia których założycielem jest user
+		  return null;
+	  }
 	  
 }
