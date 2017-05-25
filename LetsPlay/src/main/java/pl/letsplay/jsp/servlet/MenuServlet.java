@@ -89,6 +89,20 @@ public class MenuServlet extends HttpServlet {
 			} else {
 				moveToSide(request, response, "/index.jsp");
 			}
+		} else if(button.equals("getMyMeetings")) {
+			ArrayList<Meeting> listOfMeetings = null;
+			try {
+				//pobiera meetingi których jest założycielem
+				listOfMeetings = (ArrayList<Meeting>) DBUtils.myMeeting(user);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			if (listOfMeetings != null) {
+				request.getSession().setAttribute("meetings", listOfMeetings);
+				moveToSide(request, response, "/getAllEndMeetings.jsp");
+			} else {
+				moveToSide(request, response, "/index.jsp");
+			}
 		} else {
 			moveToSide(request, response, "/index.jsp");
 		}
