@@ -51,6 +51,9 @@ public class CreateMeetingServlet extends HttpServlet {
 		int num= new Integer(number);
 		String attentions=request.getParameter("attentions");
 		Meeting res=null;
+		Meeting m = new Meeting(0, true, city, date, time, address, true, 0, num, attentions);
+		System.out.println(m);
+		request.getSession().setAttribute("CreateMeeting", m);
 		try {
 			int id = ((User) request.getSession().getAttribute("user")).getUser_id();
 			res = DBUtils.createMeeting(id,pv, city, date, time, address, ad2, num, attentions);
@@ -62,6 +65,7 @@ public class CreateMeetingServlet extends HttpServlet {
 			rd.include(request,response);
 		}
 		if(res!=null){
+			request.getSession().setAttribute("CreateMeeting", null);
 			request.setAttribute("success", true);
 			RequestDispatcher rd=request.getRequestDispatcher("createMeeting.jsp");
 			rd.include(request,response);
