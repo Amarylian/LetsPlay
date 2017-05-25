@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.Meeting;
+import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
@@ -51,7 +52,8 @@ public class CreateMeetingServlet extends HttpServlet {
 		String attentions=request.getParameter("attentions");
 		Meeting res=null;
 		try {
-			res = DBUtils.createMeeting(pv, city, date, time, address, ad2, num, attentions);
+			int id = ((User) request.getSession().getAttribute("user")).getUser_id();
+			res = DBUtils.createMeeting(id,pv, city, date, time, address, ad2, num, attentions);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

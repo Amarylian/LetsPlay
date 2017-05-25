@@ -208,7 +208,7 @@ public class DBUtils {
 	   * @return utworzone spotkanie; null jeśli wystąpiła błąd
 	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
-	  	public static Meeting createMeeting(boolean priv, String city, String date, String time, String address, boolean addressVisible, int number, String attentions) throws SQLException {
+	  	public static Meeting createMeeting(int user_id, boolean priv, String city, String date, String time, String address, boolean addressVisible, int number, String attentions) throws SQLException {
 		  
 	  		Connection conn = ConnectionUtils.getConnection();
 	  		int id = -1;
@@ -216,8 +216,8 @@ public class DBUtils {
 		  Statement stmt;
 		  Meeting meeting = null;
 			String fullDate = date + " " + time;
-			String query = "INSERT INTO data.meetings(city,address,date,private,address_visible,max_players_number,attentions) VALUES('"+
-					city+"','"+address+"',to_timestamp('"+fullDate+"','YYYY-MM-DD HH24:MI'),'"+priv+"','"+addressVisible+"','"+number+"','"+attentions+"');";
+			String query = "INSERT INTO data.meetings(user_id,city,address,date,private,address_visible,max_players_number,attentions) VALUES('"+
+					user_id+"','"+city+"','"+address+"',to_timestamp('"+fullDate+"','YYYY-MM-DD HH24:MI'),'"+priv+"','"+addressVisible+"','"+number+"','"+attentions+"');";
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 			
