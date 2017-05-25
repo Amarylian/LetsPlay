@@ -389,4 +389,6 @@ public class DBUtils {
 	      
 		  return res;
 	  }
+	  
+	  //createMeetingIdea(id,city, attentions) id-user, city, attentions - ideas
 }
