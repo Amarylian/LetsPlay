@@ -41,6 +41,8 @@
  		if(success != null) {
  			if(Boolean.valueOf(success.toString()) == false) {
  				error = "Utworzenie nie powiodło się";
+ 			} else {
+ 				error = "Utworzenie spotkania powiodło się";
  			}
  		}
  			
