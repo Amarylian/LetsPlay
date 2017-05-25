@@ -1,4 +1,4 @@
-package pl.letsplay.utils;
+﻿package pl.letsplay.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -226,7 +226,11 @@ public class DBUtils {
 			rs.next();
 			id = rs.getInt(1);
 			
-			stmt.close();
+			String SQL = "INSERT INTO data.participation(user_id,meeting_id) VALUES('"+user_id+"','"+id+"');";
+			System.out.println("DBUtilis:" + SQL);
+			stmt.executeUpdate(SQL);
+			
+			
 	  		}catch (SQLException e) {
 				conn.close();
 				return null;
@@ -390,6 +394,9 @@ public class DBUtils {
 		  return res;
 	  }
 	  
+
+	  //createMeetingIdea(id,city, attentions) id-user, city, attentions - ideas
+
 	  public static List<Meeting> queryMeeting(User user) throws SQLException{
 		  List<Meeting> res = new ArrayList<Meeting>();
 		  

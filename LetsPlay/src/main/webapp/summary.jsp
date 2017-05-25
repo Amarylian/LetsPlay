@@ -28,7 +28,7 @@
 	  <option value="tak">Tak</option>
 	  <option value="nie">Nie</option>
 	</select>
-
+	<br>
 	<input type="submit" name="sum" value="Podsumuj spotkanie">
 	<a href="index.jsp"><button type="button">Powrót</button></a>
 </form>
