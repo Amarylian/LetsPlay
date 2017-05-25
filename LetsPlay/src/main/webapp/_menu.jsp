@@ -20,7 +20,7 @@
 		arrayOfLinks.put("CreateMeeting", "Utwórz spotkanie");
 		arrayOfLinks.put("GetAllMeetings", "Pokaż wszystkie spotkania");
 		arrayOfLinks.put("FindMeeting", "Wyszukaj spotkanie");
-
+		arrayOfLinks.put("getAllEndMeetings", "Pokaż zakończone spotkania");
 	} else {
 		arrayOfLinks.put("Register", "Rejestracja");
 		arrayOfLinks.put("Login", "Logowanie");
