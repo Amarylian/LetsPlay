@@ -23,15 +23,19 @@
         	String city = m.getCity();
         	String date = m.getDate();
         	String attentions = m.getAttentions();
+        	if (city == null || date == null || attentions == null) {
+        		continue;
+        	}
         	%>
         	
         	<tr>
         	<form method="post" action="GetAllMeetingsServlet">
-        				<p>Spotkanie nr <%=id %>></p>
+        				<p>Spotkanie nr <%=id %></p>
         				<p>Miasto <%=city %></p>
         				<p>Data <%=date %></p>
-        				<p>Attentions <%=attentions %>></p>
-        	        	<p><button type="submit" name="button" value=<%=id %>></button></p>
+        				<p>Uwagi: <%=attentions %></p>
+        	        	<p><button type="submit" name="button" value=<%=id %>>Szczegóły</button></p>
+        	        	<br/>
         	</form>
         	</tr>
         	<%
