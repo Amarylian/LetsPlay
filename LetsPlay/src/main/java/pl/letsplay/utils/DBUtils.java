@@ -451,5 +451,10 @@ public class DBUtils {
 		  //zwraca wydarzenia których założycielem jest user
 		  return null;
 	  }
+
+	public static Meeting createMeetingIdea(int id, String city, String attentions) throws SQLException{
+		// TODO Auto-generated method stub
+		return null;
+	}
 	  
 }
