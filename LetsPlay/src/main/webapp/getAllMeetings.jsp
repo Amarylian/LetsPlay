@@ -35,8 +35,9 @@
         				<p>Data <%=date %></p>
         				<p>Uwagi: <%=attentions %></p>
         	        	<p><button type="submit" name="button" value=<%=id %>>Szczegóły</button></p>
+        	        	<hr>
         	        	<br/>
-        	</form>
+        	</form>     
         	</tr>
         	<%
    		}

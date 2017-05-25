@@ -17,19 +17,20 @@
 <div class="form">
 <h1>Szczegóły spotkania</h1>
 
-	<p>Miejscowość: *</p>
+	<p><b>Miejscowość:</b></p>
 	<p><%=meeting.getCity() %></p>
-	<p>Data: *</p>
+	<p><b>Data:</b></p>
 	<p><%=meeting.getDate() %></p>
-	<p>Godzina: *</p>
+	<p><b>Godzina:</b></p>
 	<p><%=meeting.getTime() %></p>
-	<p>Adres</p>
+	<p><b>Adres:</b></p>
 	<p><%=meeting.getAddress() %></p>
-	<p>Liczba graczy: *</p>
+	<p><b>Liczba graczy:</b></p>
 	<p><%=meeting.getActualNumber()+"/"+meeting.getMaxNumber() %></p>
-	<p>Uwagi: </p>
+	<p><b>Uwagi:</b></p>
 	<p><%=meeting.getAttentions() %></p>
-	<a href="index.jsp"><button type="button">Powrót</button></a>
-	</div></div>
+	<form action="ShowMeetingServlet" method="post">
+		<input type="submit" value="Zapisz się na spotkanie" onclick="">
+	</form>
 </body>
 </html>
