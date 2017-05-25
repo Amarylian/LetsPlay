@@ -38,11 +38,11 @@ public class ShowMeetingServlet extends HttpServlet {
 			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");  
 	    	rd.include(request,response); 
 		} else {
-			/*try {
-				user = DBUtils.joinToMeeting(meeting, user);
+			try {
+				DBUtils.joinMeeting(meeting, user);
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}*/
+			}
 			RequestDispatcher rd=request.getRequestDispatcher("showMeeting.jsp");  
 	    	rd.include(request,response); 
 		}

@@ -29,7 +29,7 @@
         	%>
         	
         	<tr>
-        	<form method="post" action="GetAllMeetingsServlet">
+        	<form method="post" action="GetAllEndMeetingsServlet">
         				<p>Spotkanie nr <%=id %></p>
         				<p>Miasto <%=city %></p>
         				<p>Data <%=date %></p>

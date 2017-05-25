@@ -76,7 +76,7 @@ public class MenuServlet extends HttpServlet {
 		} else if(button.equals("FindMeeting")) {
 			moveToSide(request, response, "/findMeeting.jsp");
 		} else if(button.equals("getAllEndMeetings")) {
-			/*ArrayList<Meeting> listOfMeetings = null;
+			ArrayList<Meeting> listOfMeetings = null;
 			try {
 				//pobiera meetingi w których użytkownik brał udział lub jest założycielem
 				listOfMeetings = (ArrayList<Meeting>) DBUtils.queryMeeting(user);
@@ -88,7 +88,7 @@ public class MenuServlet extends HttpServlet {
 				moveToSide(request, response, "/getAllEndMeetings.jsp");
 			} else {
 				moveToSide(request, response, "/index.jsp");
-			}*/
+			}
 		} else {
 			moveToSide(request, response, "/index.jsp");
 		}

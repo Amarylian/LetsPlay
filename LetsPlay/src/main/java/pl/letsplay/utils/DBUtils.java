@@ -1,4 +1,4 @@
-package pl.letsplay.utils;
+﻿package pl.letsplay.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -390,5 +390,58 @@ public class DBUtils {
 		  return res;
 	  }
 	  
+
 	  //createMeetingIdea(id,city, attentions) id-user, city, attentions - ideas
+
+	  public static List<Meeting> queryMeeting(User user) throws SQLException{
+		  List<Meeting> res = new ArrayList<Meeting>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+		  int user_id = user.getUser_id();
+		  ResultSet rs = stmt.executeQuery( "SELECT * FROM data.meetings m JOIN data.participation p USING(meeting_id) WHERE p.user_id="+user_id+
+		   "AND p.finished = false");
+          while ( rs.next() ) {
+             int id = rs.getInt("meeting_id");
+             boolean priv = rs.getBoolean("private");
+             String  city = rs.getString("city");
+             String address = rs.getString("address");
+             String fullDate = rs.getString("date");
+             boolean addressVisible = rs.getBoolean("address_visible");
+             int maxNumber = rs.getInt("max_players_number");
+             int actualNumber = rs.getInt("players_number");
+             String attentions = rs.getString("attentions");
+             //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
+             
+             res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
+            		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
+ 					actualNumber, maxNumber, attentions));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
+	  }
+	  
+	  public static void joinMeeting(Meeting meeting, User user) throws SQLException {
+		  Connection conn = ConnectionUtils.getConnection();
+		  Statement stmt;
+		  int user_id = user.getUser_id();
+		  int meeting_id = meeting.getId();
+			String SQL = "INSERT INTO data.participation(user_id,meeting_id) VALUES('"+user_id+"','"+meeting_id+"');";
+			stmt = conn.createStatement();
+			System.out.println("DBUtilis:" + SQL);
+			stmt.executeUpdate(SQL);
+			
+			stmt.close();
+			conn.close();
+	  }
+	  
 }

@@ -67,10 +67,10 @@
   	<servlet-class>pl.letsplay.jsp.servlet.SummaryServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>getAllEndMeetings</servlet-name>
-  	<display-name>getAllEndMeetings</display-name>
+  	<servlet-name>GetAllEndMeetingsServlet</servlet-name>
+  	<display-name>GetAllEndMeetingsServlet</display-name>
   	<description></description>
-  	<servlet-class>pl.letsplay.jsp.servlet.getAllEndMeetings</servlet-class>
+  	<servlet-class>pl.letsplay.jsp.servlet.GetAllEndMeetingsServlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>CreateMeetingIdeaServlet</servlet-name>
@@ -117,8 +117,8 @@
   	<url-pattern>/SummaryServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>getAllEndMeetings</servlet-name>
-  	<url-pattern>/getAllEndMeetings</url-pattern>
+  	<servlet-name>GetAllEndMeetingsServlet</servlet-name>
+  	<url-pattern>/GetAllEndMeetingsServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>CreateMeetingIdeaServlet</servlet-name>
