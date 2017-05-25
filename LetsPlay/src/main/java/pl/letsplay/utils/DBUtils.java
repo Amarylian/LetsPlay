@@ -427,4 +427,18 @@ public class DBUtils {
 		  return res;
 	  }
 	  
+	  public static void joinMeeting(Meeting meeting, User user) throws SQLException {
+		  Connection conn = ConnectionUtils.getConnection();
+		  Statement stmt;
+		  int user_id = user.getUser_id();
+		  int meeting_id = meeting.getId();
+			String SQL = "INSERT INTO data.participation(user_id,meeting_id) VALUES('"+user_id+"','"+meeting_id+"');";
+			stmt = conn.createStatement();
+			System.out.println("DBUtilis:" + SQL);
+			stmt.executeUpdate(SQL);
+			
+			stmt.close();
+			conn.close();
+	  }
+	  
 }
