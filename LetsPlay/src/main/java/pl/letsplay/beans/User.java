@@ -32,6 +32,8 @@ public class User {
 	 */
 	private String password;
 	
+	private int points;
+	
 	public User(){
 		this.user_id = -1;
 		this.email = null;
@@ -39,6 +41,7 @@ public class User {
 		this.surname = null;
 		this.nick = null;
 		this.password = null;
+		this.setPoints(0);
 	}
 	/**
 	 * 
@@ -56,6 +59,7 @@ public class User {
 		this.surname = surname;
 		this.nick = nick;
 		this.password = password;
+		this.setPoints(0);
 	}
 
 	public int getUser_id() {
@@ -111,6 +115,12 @@ public class User {
 		if(nick!=null) res = res + " '"+nick+"'";
 		res = res + " " + surname + " ["+password+"]";
 		return res;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 }

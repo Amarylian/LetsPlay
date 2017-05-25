@@ -60,6 +60,12 @@
   	<description></description>
   	<servlet-class>pl.letsplay.jsp.servlet.FindMeetingServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SummaryServlet</servlet-name>
+  	<display-name>SummaryServlet</display-name>
+  	<description></description>
+  	<servlet-class>pl.letsplay.jsp.servlet.SummaryServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -93,6 +99,10 @@
   <servlet-mapping>
   	<servlet-name>FindMeetingServlet</servlet-name>
   	<url-pattern>/FindMeeting</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SummaryServlet</servlet-name>
+  	<url-pattern>/SummaryServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
