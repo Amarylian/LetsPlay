@@ -16,7 +16,7 @@
 <div class="form">
 
 <h1>Podsumuj spotkanie</h1>
-<form name="data" method="post" action="SummaryMeeting">
+<form name="data" method="post" action="SummaryServlet">
 
 	<p>Czy spotkanie się odbyło? </p>
 	<select name="ifmeeting">
