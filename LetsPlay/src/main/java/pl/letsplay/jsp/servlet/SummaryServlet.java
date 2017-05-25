@@ -34,12 +34,12 @@ public class SummaryServlet extends HttpServlet {
 		String ifMeeting = request.getParameter("ifmeeting");
 		String ifYou = request.getParameter("ifyou");
 		Meeting m = (Meeting) request.getSession().getAttribute("meeting");
-		if(ifMeeting.equals("Nie"))
+		if(ifMeeting.equals("nie"))
 		{
 			//db.givePoints(int pointsForUser, int pointsForAdmin, Meeting m)
 			//DBUtils.givePoints(0,-1, m);
 		}
-		else if(ifYou.equals("Nie"))
+		else if(ifYou.equals("nie"))
 		{
 			//DBUtils.givePoints(-1,1, m);
 		}
@@ -48,7 +48,6 @@ public class SummaryServlet extends HttpServlet {
 			//DBUtils.givePoints(1, 1, m);
 		}
 		moveToSide(request, response, "/index.jsp");
-		doGet(request, response);
 	}
 
 	private void moveToSide(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
