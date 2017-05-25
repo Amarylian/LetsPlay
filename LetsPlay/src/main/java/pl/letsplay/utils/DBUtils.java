@@ -226,7 +226,11 @@ public class DBUtils {
 			rs.next();
 			id = rs.getInt(1);
 			
-			stmt.close();
+			String SQL = "INSERT INTO data.participation(user_id,meeting_id) VALUES('"+user_id+"','"+id+"');";
+			System.out.println("DBUtilis:" + SQL);
+			stmt.executeUpdate(SQL);
+			
+			
 	  		}catch (SQLException e) {
 				conn.close();
 				return null;
