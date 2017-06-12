@@ -1,6 +1,7 @@
 package pl.letsplay.jsp.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.Meeting;
+import pl.letsplay.utils.DBUtils;
 
 /**
  * Klasa implementująca Servlet do obsługi wyświetlania  spotkań zalogowanego użytkownika
@@ -26,19 +28,23 @@ public class GetMyMeetingsServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+        response.setContentType("text/html; charset=UTF-8");
+		String button = request.getParameter("button");
+		if(button == null) {
+			this.moveToSide(request, response, "getMyMeetings.jsp");
+		} else {
+			try {
+				Meeting meeting = DBUtils.findMeeting(Integer.parseInt(button));
+				this.createMeeting(meeting, request, response);
+			} catch (NumberFormatException | SQLException e) {
+				e.printStackTrace();
+			
+				this.moveToSide(request, response, "getMyMeetings.jsp");
+			}
+		}
 	}
 
 	/**
