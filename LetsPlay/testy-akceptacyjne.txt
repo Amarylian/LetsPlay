@@ -1,0 +1,64 @@
+Test AT01
+Tytuł: Nowy użytkownik
+
+Akcja							Odpowiedź
+Wybór opcji rejestracji			Formularz rejestracji
+Wpisanie różniących się haseł	Informacja o błędzie
+Wpisanie poprawnych danych		Przejście do formularza logowania
+Wpisanie błędnego hasła			Informacja o błędzie
+Wybór przypomnienia hasła		Przypomnienie hasła
+Wpisanie poprawnego hasła		Strona główna po zalogowaniu
+Wylogowanie						Formularz logowania
+
+
+Test AT02
+Tytuł: Tworzenie i wyszukiwanie spotkania
+Wymagania: istniejący użytkownik
+
+Akcja											Odpowiedz
+Wybór logowania									Formularz logowania
+Wpisanie poprawnych danych						Udane logowanie -strona główna
+Wybór utworzenia spotkania						Formualrz tworzenia spotkania
+Wpisanie danych spotkania						Utworzenie spotkania
+Wybór wyszukiwania								Formularz wyszukiwania	
+Wprowadzenie wczesniej utworzonego spotkania	Wyświetlenie go na liście
+Wylogowanie										FOrmularz logowania
+
+
+Test AT03
+Tytuł: Dołączanie do spotkania i podsumowanie
+Wymagania: istniejący użytkownik i spotkanie
+
+Akcja							Odpowiedz
+Logowanie						Strona główna
+Wybór listy spotkań				Wyświetlenie dostępnych spotkań
+Zapis na wybrane spotkanie		Zarejestrowanie uczestnictwa
+Wybór zakończonych spotkań		Wyświetlenie dołączonego wydarzenia
+Podsumowanie spotkania			Rejestracja podsumowania
+Wylogowanie						Ekran logowania
+
+
+Test AT04
+Tytuł: Tworzenie nowej edycji spotkania
+Wymaganie: Istniejący użytkownik
+
+Akcja						Odpowiedz
+Logowanie					Strona główna
+Nowe spotkanie				Ekran nowego spotkania
+Utworzenie spotkania		Informacja o sukcesie
+Wybór moich spotkań			Wyśiweltenie listy utwporzonych spotkań
+Wybór opcji nowa edycja		Utworzenie nowej edycji spotkania
+Wylogowanie					Ekran logowania
+
+Test AT05				
+Tytuł: Pomysł i spotkanie
+Wymaganie: istniejacy użytkownik
+
+Akcja									Odpowiedz
+Logowanie								Strona główna
+Wybór pomytsłu na spotkanie				Odpowiedni formularz
+Wpisanei danych							Utworzenie pomysłu
+Wybór pomysły 							Lista pomysłów
+Wybór utworzenia spotkania do pomysłu	Formularz tworzenia spotkania
+Uzupełneinei danych						Utworzenie spotkania
+Wylogowanie								Ekran logowania

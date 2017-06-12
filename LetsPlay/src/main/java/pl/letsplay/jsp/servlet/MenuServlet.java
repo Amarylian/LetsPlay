@@ -99,7 +99,7 @@ public class MenuServlet extends HttpServlet {
 			}
 			if (listOfMeetings != null) {
 				request.getSession().setAttribute("meetings", listOfMeetings);
-				moveToSide(request, response, "/getAllEndMeetings.jsp");
+				moveToSide(request, response, "/getMyMeetings.jsp");
 			} else {
 				moveToSide(request, response, "/index.jsp");
 			}
