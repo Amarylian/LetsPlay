@@ -416,11 +416,11 @@ public class DBUtils {
 	  public static Idea createMeetingIdea(int user_id,String city, String attentions) throws SQLException{
 		  Connection conn = ConnectionUtils.getConnection();
 	  		int id = -1;
+	  		String query = "";
 	  		try{
 		  Statement stmt;
 		  Idea idea = null;
-			String query = "INSERT INTO data.ideas(user_id,city,attentions) VALUES('"+
-					user_id+"','"+city+"','"+attentions+"');";
+			query = "INSERT INTO data.ideas(user_id,city,attentions) VALUES('"+user_id+"','"+city+"','"+attentions+"');";
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 			
@@ -433,6 +433,8 @@ public class DBUtils {
 			
 	  		}catch (SQLException e) {
 				conn.close();
+				System.out.println("ERROR DBUtilis:" + query);
+				System.out.println(e.getMessage());
 				return null;
 			}
 	  		conn.close();
@@ -454,7 +456,9 @@ public class DBUtils {
 		  try{
 		  Statement stmt = conn.createStatement();
 		  int user_id = user.getUser_id();
-		  ResultSet rs = stmt.executeQuery( "SELECT * FROM data.meetings m JOIN data.participation p USING(meeting_id) WHERE p.user_id="+user_id+
+		  ResultSet rs = stmt.executeQuery( "SELECT meeting_id, private, city, address, "
+		  		+ "date, address_visible, max_players_number, players_number, attentions, m.user_id as user_id "
+		  		+ "FROM data.meetings m JOIN data.participation p USING(meeting_id) WHERE p.user_id="+user_id+
 		   "AND p.finished = false");
           while ( rs.next() ) {
              int id = rs.getInt("meeting_id");
@@ -466,7 +470,7 @@ public class DBUtils {
              int maxNumber = rs.getInt("max_players_number");
              int actualNumber = rs.getInt("players_number");
              String attentions = rs.getString("attentions");
-             int creator_id = rs.getInt("m.user_id");
+             int creator_id = rs.getInt("user_id");
              //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
              
              res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
