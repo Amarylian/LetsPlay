@@ -1,4 +1,4 @@
-﻿package pl.letsplay.utils;
+package pl.letsplay.utils;
 
 
 
@@ -251,7 +251,7 @@ public class DBUtils {
 	  	 * Wyszukiwanie spotkania po id
 	  	 * @param id id spotkania
 	  	 * @return znalezione spotkanie, null jeśli wystąpiła błąd
-	  	 * @throws SQLException 
+	  	 * @throws SQLException błąd podczas połaczenia z bazą danych
 	  	 */
 	  public static Meeting findMeeting(int id) throws SQLException{
 		  
@@ -298,7 +298,7 @@ public class DBUtils {
 	  /**
 	   * Znalezienie wszystkich spotkanń
 	   * @return lista spotkań, null w przypadku błędu
-	 * @throws SQLException 
+	 * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<Meeting> queryMeeting() throws SQLException{
 		  List<Meeting> res = new ArrayList<Meeting>();
@@ -341,7 +341,7 @@ public class DBUtils {
 	   * Znalezienie spotkań zgodnych z podanymi atrybutami
 	   * @param attributes mapa atrybutów (keys: city, address, date_from, date_to, attentions)
 	   * @return lista spotkań, null w przypadku błędu
-	 * @throws SQLException 
+	 * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<Meeting> queryMeeting(Map<String, String> attributes) throws SQLException{
 		  List<Meeting> res = new ArrayList<Meeting>();
@@ -444,7 +444,7 @@ public class DBUtils {
 	   * Znalezienie spotkań, w których uczestnik wziął udział, ale jeszcze ich nie ocenił
 	   * @param user zalogowany użytkownik
 	   * @return lista spotkań
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<Meeting> queryMeeting(User user) throws SQLException{
 		  List<Meeting> res = new ArrayList<Meeting>();
@@ -590,7 +590,7 @@ public class DBUtils {
 	  /**
 	   * Zwrócenie listy pomysłów
 	   * @return list pomysłów
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<Idea> queryIdeas() throws SQLException{
 		  List<Idea> res = new ArrayList<Idea>();
@@ -623,7 +623,7 @@ public class DBUtils {
 	  /**
 	   * Zwrócenie listy pomysłów, które nie mają utworzonego spotkania
 	   * @return list pomysłów
-	   * @throws SQLException
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
 	   */
 	  public static List<Idea> queryIdeasWithoutMeetings() throws SQLException{
 		  List<Idea> res = new ArrayList<Idea>();
@@ -680,6 +680,13 @@ public class DBUtils {
 		  return findUser(user_id);
 	  }
 	  
+	  /**
+	   * 
+	   * @param user_id id zalogowanego użytkownika
+	   * @param meeting_id id spotkania
+	   * @return oceniane spotkanie
+	   * @throws SQLException błąd podczas połaczenia z bazą danych
+	   */
 	  public static Meeting scoreMeeting(int user_id, int meeting_id) throws SQLException{
 		  
 		  Connection conn = ConnectionUtils.getConnection();

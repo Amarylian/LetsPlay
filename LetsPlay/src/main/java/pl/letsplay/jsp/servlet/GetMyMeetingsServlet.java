@@ -52,7 +52,7 @@ public class GetMyMeetingsServlet extends HttpServlet {
 	 * funkcja przekierwouje do tworzenia kolejnej edycji spotkania
 	 */
 	protected void createMeeting(Meeting meeting, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Meeting createMeeting = new Meeting(-1, false, meeting.getCity(), null, null, meeting.getAddress(), false, 0, meeting.getMaxNumber(), meeting.getAttentions());
+		Meeting createMeeting = new Meeting(-1, false, meeting.getCity(), null, null, meeting.getAddress(), false, 0, meeting.getMaxNumber(), meeting.getAttentions(),-1);
 		request.getSession().setAttribute("CreateMeeting", createMeeting);
 		this.moveToSide(request, response, "createMeeting.jsp");
 	}
