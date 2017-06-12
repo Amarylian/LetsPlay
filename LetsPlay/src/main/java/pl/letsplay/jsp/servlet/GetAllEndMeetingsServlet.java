@@ -13,7 +13,7 @@ import pl.letsplay.beans.Meeting;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class GetAllEndMeetingsServlet
+ * Klasa implementująca Servlet do wyświetlania wszystkich zakończonych spotkań
  */
 public class GetAllEndMeetingsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,10 +26,9 @@ public class GetAllEndMeetingsServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    /**
+     * Obsługa przekierowania na podsumowanie spotkania
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
 		String button = request.getParameter("button");

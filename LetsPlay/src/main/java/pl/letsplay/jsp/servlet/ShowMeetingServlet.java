@@ -14,7 +14,8 @@ import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class ShowMeetingServlet
+ * Klasa implementująca Servlet do wyświetlania szczegółów spotkania
+ * obsługuje stronę szczegółów spotkania
  */
 public class ShowMeetingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +28,7 @@ public class ShowMeetingServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Obsługa przycisku szczegółów spotkania
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

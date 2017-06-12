@@ -102,12 +102,10 @@ public class FindMeetingServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+
+    /**
+	 * Obsługa przekierowania do innej strony
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
 	
 	private void moveToSide(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
 		RequestDispatcher rd=request.getRequestDispatcher(url);  

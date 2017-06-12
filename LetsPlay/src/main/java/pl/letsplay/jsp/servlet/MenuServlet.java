@@ -15,7 +15,7 @@ import pl.letsplay.utils.DBUtils;
 import pl.letsplay.beans.Meeting;
 
 /**
- * Servlet implementation class menuServlet
+ * Klasa implementująca Servlet do obsługi menu
  */
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class MenuServlet extends HttpServlet {
     }
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Obsługa przycisków w menu
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
@@ -107,6 +107,10 @@ public class MenuServlet extends HttpServlet {
 			moveToSide(request, response, "/index.jsp");
 		}
 	}
+	
+    /**
+	 * Obsługa przekierowania do innej strony
+	 */
 	
 	private void moveToSide(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
 		RequestDispatcher rd=request.getRequestDispatcher(url);  

@@ -12,7 +12,8 @@ import pl.letsplay.beans.Meeting;
 import pl.letsplay.utils.DBUtils;
 
 /**
- * Servlet implementation class SummaryServlet
+ * Klasa implementująca Servlet do podsumowania spotkania
+ * obsługuje stronę podsumowania spotkania
  */
 public class SummaryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,8 @@ public class SummaryServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Obsługa formularza.
+	 * Pobiera dane z formularza podsumowania spotkania i przesyła je do klasy łączącej z bazą danych
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

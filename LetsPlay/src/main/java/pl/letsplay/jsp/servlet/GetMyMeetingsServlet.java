@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class GetMyMeetingsServlet
+ * Klasa implementująca Servlet do obsługi wyświetlania  spotkań zalogowanego użytkownika
+ * obsługuje stronę wyświetlania spotkań
  */
 public class GetMyMeetingsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

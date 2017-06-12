@@ -28,7 +28,6 @@ public class GetAllMeetingsServlet extends HttpServlet {
 
 	/**
 	 * Obsługa wybierania widoku szczegółowego. Po kliknięciu na przycisk, konkretne spotkanie zostaje zapisane jako atrybut sesji.
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
