@@ -36,14 +36,21 @@ public class GetMyMeetingsServlet extends HttpServlet {
 		if(button == null) {
 			this.moveToSide(request, response, "getMyMeetings.jsp");
 		} else {
+			Meeting meeting = null;
 			try {
-				Meeting meeting = DBUtils.findMeeting(Integer.parseInt(button));
-				this.createMeeting(meeting, request, response);
-			} catch (NumberFormatException | SQLException e) {
+				meeting = DBUtils.findMeeting(Integer.parseInt(button));
+			} catch (NumberFormatException e) {
 				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
+			if (meeting != null) {
+				this.createMeeting(meeting, request, response);
+			} else {
 				this.moveToSide(request, response, "getMyMeetings.jsp");
 			}
+
 		}
 	}
 
