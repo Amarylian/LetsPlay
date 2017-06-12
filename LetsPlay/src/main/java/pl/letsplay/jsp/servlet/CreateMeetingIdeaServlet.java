@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pl.letsplay.beans.Idea;
 import pl.letsplay.beans.Meeting;
 import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
@@ -37,7 +38,7 @@ public class CreateMeetingIdeaServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String city=request.getParameter("city");
 		String attentions=request.getParameter("attentions");
-		Meeting res=null;
+		Idea res=null;
 		try {
 			int id = ((User) request.getSession().getAttribute("user")).getUser_id();
 			res = DBUtils.createMeetingIdea(id, city, attentions);

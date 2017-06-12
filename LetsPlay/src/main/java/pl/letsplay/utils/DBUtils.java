@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import pl.letsplay.beans.Idea;
 import pl.letsplay.beans.Meeting;
 import pl.letsplay.beans.User;
 import pl.letsplay.connections.ConnectionUtils;
@@ -395,8 +396,47 @@ public class DBUtils {
 	  }
 	  
 
-	  //createMeetingIdea(id,city, attentions) id-user, city, attentions - ideas
+	  /**
+	   * Tworzenie nowego pomysłu
+	   * @param user_id id twórcy pomysłu
+	   * @param city miasto
+	   * @param attentions uwagi dodatkowe
+	   * @return utworzony pomysł
+	 * @throws SQLException bład bazy danych
+	   */
+	  public static Idea createMeetingIdea(int user_id,String city, String attentions) throws SQLException{
+		  Connection conn = ConnectionUtils.getConnection();
+	  		int id = -1;
+	  		try{
+		  Statement stmt;
+		  Idea idea = null;
+			String query = "INSERT INTO data.ideas(user_id,city,attentions) VALUES('"+
+					user_id+"','"+city+"','"+attentions+"');";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = stmt.getGeneratedKeys();
+			rs.next();
+			id = rs.getInt(1);
+			
+			System.out.println("DBUtilis:" + query);
+			
+			
+	  		}catch (SQLException e) {
+				conn.close();
+				return null;
+			}
+	  		conn.close();
+		  
+		  return findIdea(id);
+	  }
 
+	  /**
+	   * Znalezienie spotkań, w których uczestnik wziął udział, ale jeszcze ich nie ocenił
+	   * @param user zalogowany użytkownik
+	   * @return lista spotkań
+	   * @throws SQLException
+	   */
 	  public static List<Meeting> queryMeeting(User user) throws SQLException{
 		  List<Meeting> res = new ArrayList<Meeting>();
 		  
@@ -434,6 +474,12 @@ public class DBUtils {
 		  return res;
 	  }
 	  
+	  /**
+	   * Dołączenie do spotkania
+	   * @param meeting spotkanie, do którego chcemy dołączyć
+	   * @param user zalogowany użytkownik
+	   * @throws SQLException błąd bazy danych
+	   */
 	  public static void joinMeeting(Meeting meeting, User user) throws SQLException {
 		  Connection conn = ConnectionUtils.getConnection();
 		  Statement stmt;
@@ -447,14 +493,154 @@ public class DBUtils {
 			stmt.close();
 			conn.close();
 	  }
-	  public static List<Meeting> myMeeting(User user) throws SQLException{
-		  //zwraca wydarzenia których założycielem jest user
-		  return null;
+	  
+	  /**
+	   * Poszukiwanie pomysłu po id
+	   * @param id id pomysłu
+	   * @return znaleziony po
+	   * @throws SQLException błąd bazy danych
+	   */
+	  public static Idea findIdea(int id) throws SQLException{
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  Idea idea = null;
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+		
+			
+			String SQL =  "SELECT * FROM data.ideas WHERE idea_id='"+id+"';" ;
+			System.out.println("DBUtils: "+SQL);
+			
+		    ResultSet rs = stmt.executeQuery(SQL);
+		    if ( rs.next() ) {
+		    	int idea_id = rs.getInt("idea_id");
+		        String  city = rs.getString("city");
+		        String attentions = rs.getString("attentions");
+		        int meeting_id = rs.getInt("meeting_id");
+		        int user_id = rs.getInt("user_id");
+		        
+		        idea = new Idea(idea_id, city, attentions, user_id, meeting_id);
+		    }
+		    
+		    rs.close();
+		    stmt.close();
+		    conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		    
+		    
+		    return idea;
 	  }
-
-	public static Meeting createMeetingIdea(int id, String city, String attentions) throws SQLException{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	  
+	  /**
+	   * Szukanie spotkań, których organizatorem jest zalogowany użytkownik
+	   * @param user zalogowany użytkownik
+	   * @return lista spotkań użytkownika
+	   * @throws SQLException błąd bazy danych
+	   */
+	  public static List<Meeting> myMeeting(User user) throws SQLException{
+		  List<Meeting> res = new ArrayList<Meeting>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+		  int user_id = user.getUser_id();
+		  ResultSet rs = stmt.executeQuery( "SELECT * FROM data.meetings WHERE user_id="+user_id);
+          while ( rs.next() ) {
+             int id = rs.getInt("meeting_id");
+             boolean priv = rs.getBoolean("private");
+             String  city = rs.getString("city");
+             String address = rs.getString("address");
+             String fullDate = rs.getString("date");
+             boolean addressVisible = rs.getBoolean("address_visible");
+             int maxNumber = rs.getInt("max_players_number");
+             int actualNumber = rs.getInt("players_number");
+             String attentions = rs.getString("attentions");
+             //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
+             
+             res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
+            		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
+ 					actualNumber, maxNumber, attentions));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
+	  }
+	  
+	  /**
+	   * Zwrócenie listy pomysłów
+	   * @return list pomysłów
+	   * @throws SQLException
+	   */
+	  public static List<Idea> queryIdeas() throws SQLException{
+		  List<Idea> res = new ArrayList<Idea>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery( "SELECT * FROM data.ideas;" );
+          while ( rs.next() ) {
+             int meeting_id = rs.getInt("meeting_id");
+             String  city = rs.getString("city");
+             String attentions = rs.getString("attentions");
+             int user_id = rs.getInt("user_id");
+             int idea_id = rs.getInt("idea_id");
+             
+             res.add(new Idea(idea_id, city, attentions, user_id, meeting_id));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
+	  }
+	  
+	  /**
+	   * Zwrócenie listy pomysłów, które nie mają utworzonego spotkania
+	   * @return list pomysłów
+	   * @throws SQLException
+	   */
+	  public static List<Idea> queryIdeasWithoutMeetings() throws SQLException{
+		  List<Idea> res = new ArrayList<Idea>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery( "SELECT * FROM data.ideas where meeting_id IS NOT NULL;" );
+          while ( rs.next() ) {
+             int meeting_id = rs.getInt("meeting_id");
+             String  city = rs.getString("city");
+             String attentions = rs.getString("attentions");
+             int user_id = rs.getInt("user_id");
+             int idea_id = rs.getInt("idea_id");
+             
+             if(meeting_id!=0) res.add(new Idea(idea_id, city, attentions, user_id, meeting_id));
+          }
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      
+		  return res;
+	  }
 	  
 }
