@@ -22,6 +22,8 @@
 		arrayOfLinks.put("FindMeeting", "Wyszukaj spotkanie");
 		arrayOfLinks.put("getAllEndMeetings", "Pokaż zakończone spotkania");
 		arrayOfLinks.put("getMyMeetings","Pokaż moje spotkania");
+		arrayOfLinks.put("CreateIdea", "Utwórz pomysł spotkania");
+		arrayOfLinks.put("getMeetingIdea", "Pokaż wszystkie pomysły spotkania");
 	} else {
 		arrayOfLinks.put("Register", "Rejestracja");
 		arrayOfLinks.put("Login", "Logowanie");

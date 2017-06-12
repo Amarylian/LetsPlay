@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
+import pl.letsplay.beans.Idea;
 import pl.letsplay.beans.Meeting;
 
 /**
@@ -103,6 +104,21 @@ public class MenuServlet extends HttpServlet {
 			} else {
 				moveToSide(request, response, "/index.jsp");
 			}
+		} else if(button.equals("getMeetingIdea")) {
+			ArrayList<Idea> listOfIdeas = null;
+			try {
+				listOfIdeas = (ArrayList<Idea>) DBUtils.queryIdeas();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			if (listOfIdeas != null) {
+				request.getSession().setAttribute("ideas", listOfIdeas);
+				moveToSide(request, response, "/getAllIdeas.jsp");
+			} else {
+				moveToSide(request, response, "/index.jsp");
+			}
+		} else if(button.equals("CreateIdea")) {
+			moveToSide(request, response, "/createMeetingIdea.jsp");
 		} else {
 			moveToSide(request, response, "/index.jsp");
 		}
