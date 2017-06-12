@@ -69,7 +69,7 @@
 	<a href="index.jsp"><button type="button">Powrót</button></a>
 		<div class="errorMessage"><%=error%></div>
 </form>
-        	<form method="post" action="GetAllEndMeetingsServlet">
+        	<form method="post" action="GetMyMeetingsServlet">
         				<p>Spotkanie nr <%=id %></p>
         				<p>Miasto <%=city %></p>
         				<p>Data <%=date %></p>
