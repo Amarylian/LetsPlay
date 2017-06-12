@@ -15,8 +15,8 @@ public class MeetingTest {
 		this.emptyMeeting = new Meeting();
 		//	int id, boolean priv, String city, String date, String time, String address, boolean addressVisible,int maxNumber;
 		//int actualNumber,String attentions;
-		this.emptyCityMeeting = new Meeting(5,false,null,"2000-12-03", "12:30", "Piotrowo 2", true, 3,5, "uwagi");
-		this.meeting = new Meeting(5,false,"Poznan","2000-12-03", "12:30", "Piotrowo 2", true, 3,5, "uwagi");
+		this.emptyCityMeeting = new Meeting(5,false,null,"2000-12-03", "12:30", "Piotrowo 2", true, 3,5, "uwagi",3);
+		this.meeting = new Meeting(5,false,"Poznan","2000-12-03", "12:30", "Piotrowo 2", true, 3,5, "uwagi",3);
 	}
 	@Test
 	public void testIsPriv() {

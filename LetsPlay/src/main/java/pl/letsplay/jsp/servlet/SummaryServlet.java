@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.letsplay.beans.Meeting;
+import pl.letsplay.beans.User;
 import pl.letsplay.utils.DBUtils;
 
 /**
@@ -36,18 +37,29 @@ public class SummaryServlet extends HttpServlet {
 		String ifMeeting = request.getParameter("ifmeeting");
 		String ifYou = request.getParameter("ifyou");
 		Meeting m = (Meeting) request.getSession().getAttribute("meeting");
-		if(ifMeeting.equals("nie"))
-		{
-			//db.givePoints(int pointsForUser, int pointsForAdmin, Meeting m)
-			//DBUtils.givePoints(0,-1, m);
-		}
-		else if(ifYou.equals("nie"))
-		{
-			//DBUtils.givePoints(-1,1, m);
-		}
-		else
-		{
-			//DBUtils.givePoints(1, 1, m);
+		User u = (User) request.getSession().getAttribute("user");
+		try{
+			if(ifMeeting.equals("nie"))
+			{
+				DBUtils.givePoints(u.getUser_id(), 0);
+				DBUtils.givePoints(m.getUserId(), -1);
+				//DBUtils.givePoints(0,-1, m);
+			}
+			else if(ifYou.equals("nie"))
+			{
+				DBUtils.givePoints(u.getUser_id(), -1);
+				DBUtils.givePoints(m.getUserId(), 1);
+				//DBUtils.givePoints(-1,1, m);
+			}
+			else
+			{
+				DBUtils.givePoints(u.getUser_id(), 1);
+				DBUtils.givePoints(m.getUserId(), 1);
+				//DBUtils.givePoints(1, 1, m);
+			}
+			DBUtils.scoreMeeting(u.getUser_id(), m.getId());
+		}catch(Exception ex){
+			//TODO
 		}
 		moveToSide(request, response, "/index.jsp");
 	}

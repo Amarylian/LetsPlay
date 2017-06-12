@@ -16,8 +16,8 @@ public class UserTest {
 	public void setUp() throws Exception {
 		this.emptyUser = new User();
 		//int id, String email, String name, String surname, String nick, String password
-		this.emptyNickUser = new User(0, "test@test.com", "nameTest", "surnameTest", null, "passwordTest");
-		this.user = new User(0, "test@test.com", "nameTest", "surnameTest", "nickTest", "passwordTest");
+		this.emptyNickUser = new User(0, "test@test.com", "nameTest", "surnameTest", null, "passwordTest",0);
+		this.user = new User(0, "test@test.com", "nameTest", "surnameTest", "nickTest", "passwordTest",0);
 	}
 	
 	@Test

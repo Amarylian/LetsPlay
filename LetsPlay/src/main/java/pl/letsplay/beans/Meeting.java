@@ -47,6 +47,10 @@ public class Meeting {
 	 * dodatkowe uwagi 
 	 */
 	private String attentions;
+	/**
+	 * id twórcy spotkania
+	 */
+	private int user_id;
 	
 	/**
 	 * 
@@ -62,7 +66,7 @@ public class Meeting {
 	 * @param attentions uwagi dodatkowe
 	 */
 	public Meeting(int id, boolean priv, String city, String date, String time, String address, boolean addressVisible,
-			int actualNumber, int maxNumber, String attentions) {
+			int actualNumber, int maxNumber, String attentions, int user_id) {
 		super();
 		this.priv = priv;
 		this.city = city;
@@ -74,6 +78,7 @@ public class Meeting {
 		this.maxNumber = maxNumber;
 		this.attentions = attentions;
 		this.id = id;
+		this.user_id = user_id;
 	}
 	
 	public String toString(){
@@ -163,6 +168,14 @@ public class Meeting {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getUserId() {
+		return user_id;
+	}
+
+	public void setUserId(int id) {
+		this.user_id = id;
 	}
 	
 	

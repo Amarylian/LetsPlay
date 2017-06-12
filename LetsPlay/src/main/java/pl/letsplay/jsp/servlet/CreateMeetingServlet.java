@@ -51,7 +51,7 @@ public class CreateMeetingServlet extends HttpServlet {
 		int num= new Integer(number);
 		String attentions=request.getParameter("attentions");
 		Meeting res=null;
-		Meeting m = new Meeting(0, true, city, date, time, address, true, 0, num, attentions);
+		Meeting m = new Meeting(0, true, city, date, time, address, true, 0, num, attentions, -1);
 		System.out.println(m);
 		request.getSession().setAttribute("CreateMeeting", m);
 		try {

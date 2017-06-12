@@ -1,5 +1,7 @@
 ﻿package pl.letsplay.utils;
 
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +44,8 @@ public class DBUtils {
            String surname = rs.getString("surname");
            String nick = rs.getString("nick");
            String pass = rs.getString("password");
-           user = new User(id, email, name, surname, nick, pass);
+           int points = rs.getInt("points");
+           user = new User(id, email, name, surname, nick, pass, points);
         }
         
         rs.close();
@@ -77,7 +80,8 @@ public class DBUtils {
 	           String surname = rs.getString("surname");
 	           String nick = rs.getString("nick");
 	           String pass = rs.getString("password");
-	           user = new User(user_id, mail, name, surname, nick, pass);
+	           int points = rs.getInt("points");
+	           user = new User(user_id, mail, name, surname, nick, pass, points);
 	        }
 	        
 	        rs.close();
@@ -113,7 +117,8 @@ public class DBUtils {
 	           String surname = rs.getString("surname");
 	           String nick = rs.getString("nick");
 	           String pass = rs.getString("password");
-	           user = new User(user_id, email, name, surname, nick, pass);
+	           int points = rs.getInt("points");
+	           user = new User(user_id, email, name, surname, nick, pass, points);
 	        }
 	        
 	        rs.close();
@@ -146,7 +151,8 @@ public class DBUtils {
              String surname = rs.getString("surname");
              String nick = rs.getString("nick");
              String pass = rs.getString("password");
-             User u = new User(id, email, name, surname, nick, pass);
+             int points = rs.getInt("points");
+             User u = new User(id, email, name, surname, nick, pass, points);
              res.add(u);
           }
           rs.close();
@@ -270,10 +276,11 @@ public class DBUtils {
 		        int maxNumber = rs.getInt("max_players_number");
 		        int actualNumber = rs.getInt("players_number");
 		        String attentions = rs.getString("attentions");
+		        int user_id = rs.getInt("user_id");
 		        //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
 		        
 		        meeting = new Meeting(meeting_id, priv, city, fullDate.substring(0,9), fullDate.substring(11), address, addressVisible,
-						actualNumber, maxNumber, attentions);
+						actualNumber, maxNumber, attentions, user_id);
 		    }
 		    
 		    rs.close();
@@ -311,11 +318,12 @@ public class DBUtils {
              int maxNumber = rs.getInt("max_players_number");
              int actualNumber = rs.getInt("players_number");
              String attentions = rs.getString("attentions");
+             int user_id = rs.getInt("user_id");
              //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
              
              res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
             		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
- 					actualNumber, maxNumber, attentions));
+ 					actualNumber, maxNumber, attentions, user_id));
           }
           rs.close();
           stmt.close();
@@ -378,11 +386,12 @@ public class DBUtils {
              int maxNumber = rs.getInt("max_players_number");
              int actualNumber = rs.getInt("players_number");
              String attentions = rs.getString("attentions");
+             int user_id = rs.getInt("user_id");
              //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
              
              res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
             		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
- 					actualNumber, maxNumber, attentions));
+ 					actualNumber, maxNumber, attentions, user_id));
           }
           rs.close();
           stmt.close();
@@ -457,11 +466,12 @@ public class DBUtils {
              int maxNumber = rs.getInt("max_players_number");
              int actualNumber = rs.getInt("players_number");
              String attentions = rs.getString("attentions");
+             int creator_id = rs.getInt("m.user_id");
              //System.out.println("Meeting "+id+": "+date+" "+ad+", "+city);
              
              res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
             		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
- 					actualNumber, maxNumber, attentions));
+ 					actualNumber, maxNumber, attentions, creator_id));
           }
           rs.close();
           stmt.close();
@@ -564,7 +574,7 @@ public class DBUtils {
              
              res.add(new Meeting(id, priv, city, ((fullDate==null)?null:fullDate.substring(0,10)), 
             		 ((fullDate==null)?null:fullDate.substring(11)), address, addressVisible,
- 					actualNumber, maxNumber, attentions));
+ 					actualNumber, maxNumber, attentions, user_id));
           }
           rs.close();
           stmt.close();
@@ -641,6 +651,52 @@ public class DBUtils {
 			}
 	      
 		  return res;
+	  }
+	  
+	  /**
+	   * Przydzielenie użytkownikowi danej liczby punktów
+	   * @param user_id id użytkownika
+	   * @param points liczba przydzielonych punktów
+	   * @return użytkownik, któremu przydzielono punkty
+	   * @throws SQLException błąd bazy danych
+	   */
+	  public static User givePoints(int user_id, int points) throws SQLException{
+		  List<Idea> res = new ArrayList<Idea>();
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery( "UPDATE data.users SET points = points + "+points+" where user_id = "+user_id+";" );
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+	      
+		  return findUser(user_id);
+	  }
+	  
+	  public static Meeting scoreMeeting(int user_id, int meeting_id) throws SQLException{
+		  
+		  Connection conn = ConnectionUtils.getConnection();
+		  
+		  try{
+		  Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery( "UPDATE data.participation SET finished = false where user_id = "+user_id+" AND meeting_id = "+meeting_id+";" );
+          rs.close();
+          stmt.close();
+          conn.close();
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+	      
+		  return findMeeting(meeting_id);
 	  }
 	  
 }

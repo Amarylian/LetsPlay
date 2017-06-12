@@ -52,14 +52,14 @@ public class User {
 	 * @param nick pseudonim
 	 * @param password hasło do konta
 	 */
-	public User(int id, String email, String name, String surname, String nick, String password){
+	public User(int id, String email, String name, String surname, String nick, String password, int points){
 		this.user_id = id;
 		this.email = email;
 		this.name = name;
 		this.surname = surname;
 		this.nick = nick;
 		this.password = password;
-		this.setPoints(0);
+		this.points = points;
 	}
 
 	public int getUser_id() {
