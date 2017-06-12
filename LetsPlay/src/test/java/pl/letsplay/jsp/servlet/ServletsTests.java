@@ -5,7 +5,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ LoginServletTest.class, PasswordReminderServletTest.class, GetAllMeetingsServletTest.class })
+@SuiteClasses({ CreateMeetingIdeaServletTest.class, GetAllMeetingsServletTest.class, GetMyMeetingsServletTest.class,
+		LoginServletTest.class, PasswordReminderServletTest.class, ShowMeetingServletTest.class,
+		SummaryServletTest.class })
 public class ServletsTests {
 
 }

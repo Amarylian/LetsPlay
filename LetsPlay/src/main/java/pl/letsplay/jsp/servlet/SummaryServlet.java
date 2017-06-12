@@ -43,19 +43,16 @@ public class SummaryServlet extends HttpServlet {
 			{
 				DBUtils.givePoints(u.getUser_id(), 0);
 				DBUtils.givePoints(m.getUserId(), -1);
-				//DBUtils.givePoints(0,-1, m);
 			}
 			else if(ifYou.equals("nie"))
 			{
 				DBUtils.givePoints(u.getUser_id(), -1);
 				DBUtils.givePoints(m.getUserId(), 1);
-				//DBUtils.givePoints(-1,1, m);
 			}
 			else
 			{
 				DBUtils.givePoints(u.getUser_id(), 1);
 				DBUtils.givePoints(m.getUserId(), 1);
-				//DBUtils.givePoints(1, 1, m);
 			}
 			DBUtils.scoreMeeting(u.getUser_id(), m.getId());
 		}catch(Exception ex){
