@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>AT04</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AT04</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/LetsPlay/MenuServlet?button=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=login</td>
+	<td>qq@qq.qq</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>q</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=city</td>
+	<td>q</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=dat</td>
+	<td>10-10-10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=tim</td>
+	<td>10:10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=address</td>
+	<td>q</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=number</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=attentions</td>
+	<td>uwagi</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.errorMessage</td>
+	<td>Utworzenie spotkania powiodło się</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=attentions</td>
+	<td>javascript{&quot;x+&quot; + Math.floor(Math.random()*11111) }</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>name=attentions</td>
+	<td>att</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.errorMessage</td>
+	<td>Utworzenie spotkania powiodło się</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=attentions</td>
+	<td>${att}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=create</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//p[2]</td>
+	<td>Miasto q</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@name='button'])[5]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
