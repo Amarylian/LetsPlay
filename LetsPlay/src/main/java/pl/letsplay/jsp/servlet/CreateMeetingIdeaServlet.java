@@ -48,7 +48,7 @@ public class CreateMeetingIdeaServlet extends HttpServlet {
 			rd.include(request,response);
 		}
 		if(res!=null){
-			RequestDispatcher rd=request.getRequestDispatcher("Index.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 			rd.include(request,response);
 		} else {
 			RequestDispatcher rd=request.getRequestDispatcher("createMeetingIdea.jsp");
