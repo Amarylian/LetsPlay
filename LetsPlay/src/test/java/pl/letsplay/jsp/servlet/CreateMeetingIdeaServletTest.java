@@ -66,7 +66,7 @@ public class CreateMeetingIdeaServletTest {
 		(Mockito.verify(request, Mockito.times(1))).getParameter(Mockito.eq("city"));
 		(Mockito.verify(request, Mockito.times(1))).getParameter(Mockito.eq("attentions"));
 		(Mockito.verify(user, Mockito.times(1))).getUser_id();
-		(Mockito.verify(request, Mockito.times(1))).getRequestDispatcher(Mockito.eq("Index.jsp"));
+		(Mockito.verify(request, Mockito.times(1))).getRequestDispatcher(Mockito.eq("index.jsp"));
 		(Mockito.verify(rd, Mockito.times(1))).include(Mockito.any(ServletRequest.class), Mockito.any(ServletResponse.class));
 		
 	}
